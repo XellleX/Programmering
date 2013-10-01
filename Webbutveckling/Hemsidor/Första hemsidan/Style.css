@@ -1,0 +1,36 @@
+/*
+	Author: Elias Axelsson
+	Contact: 
+	Description: 
+*/
+
+body{
+	background-color: #ffffff;
+	Width:100%;
+	height: 100%;
+}
+
+#main-navigation{
+	border: 1px solid #000000;
+}
+
+#linkabout {
+	border: 4px groove #00ff00;
+	width: 10%;
+	height: 10%;
+}
+
+#linkcontact {
+	border:4px groove #00ff00;
+	width: 10%;
+}
+
+#linkhome {
+	border: 4px groove #00ff00;
+	width: 10%;
+}
+
+#linkinfo {
+	border: 4px groove #00ff00;
+	width: 10%;
+}

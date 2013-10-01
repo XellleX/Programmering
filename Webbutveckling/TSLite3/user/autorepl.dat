@@ -1,0 +1,42 @@
+[!i | ]
+!important
+[bb: | ]
+border-bottom:
+[bc: | ]
+background-color:
+[bl: | ]
+border-left:
+[br: | ]
+border-right:
+[bs: | ]
+border-style:
+[bt: | ]
+border-top:
+[c: | ]
+color:
+[ff: | ]
+font-family:
+[fs: | ]
+font-style:
+[fsz: | ]
+font-size:
+[fv: | ]
+font-variant:
+[fw: | ]
+font-weight:
+[h: | ]
+height:
+[lh: | ]
+line-height:
+[mb: | ]
+margin-bottom:
+[ml: | ]
+margin-left:
+[mr: | ]
+margin-right:
+[mt: | ]
+margin-top:
+[td: | ]
+text-decoration:
+[w: | ]
+width:
