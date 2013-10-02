@@ -50,16 +50,19 @@ package
 			addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			this.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			// entry point
+			
 			player1.x = stage.stageWidth - player2.PLAYER_SIDELENGTH;
 			player1.y = stage.stageHeight - player1.PLAYER_SIDELENGTH;
 			player2.x = 0;
 			player2.y = stage.stageHeight - player2.PLAYER_SIDELENGTH;
-			addChild(player1);
-			addChild(player2);
 			debugField.width = stage.stageWidth;
 			debugField.height = stage.stageHeight;
 			debugField.selectable = false;
+			debugField.background = true;
+			debugField.backgroundColor = 0xFFFF00;
 			addChild(debugField);
+			addChild(player1);
+			addChild(player2);
 		}
 		
 		private function onEnterFrame(event:Event):void 
