@@ -84,7 +84,7 @@ package
 			else if (!player1OnGround && collision3)
 			{
 				player1JumpSpeed = 0;
-				player2.y = player1.y + player1.PLAYER_SIDELENGTH;
+				//player2.y = player1.y + player1.PLAYER_SIDELENGTH;
 			}
 			
 			if (!player2OnGround)
@@ -115,10 +115,13 @@ package
 			
 			if (leftKeyDown)
 			{
-				collsion();
-				if (!collision)
+				if (collision)
 				{
-					player1.moveSpeed(-5, 0);
+					player1.moveSpeed (0, 0);
+				}
+				else 
+				{
+					player1.moveSpeed (-5, 0);
 				}
 				
 				if (player1.x <= -player1.PLAYER_SIDELENGTH)
@@ -130,10 +133,13 @@ package
 			
 			if (rightKeyDown)
 			{
-				collsion();
-				if (!collision)
+				if (collision2)
 				{
-					player1.moveSpeed(5, 0);
+					player1.moveSpeed (0, 0);
+				}
+				else 
+				{
+					player1.moveSpeed (5, 0);
 				}
 				
 				if (player1.x >= stage.stageWidth)
@@ -149,13 +155,6 @@ package
 			
 			if (aKeyDown)
 			{
-				collsion();
-				if (!collision)
-				{
-					player2.moveSpeed(-5, 0);
-				}
-				
-				/*
 				if (collision2)
 				{
 					player2.moveSpeed (0, 0);
@@ -164,7 +163,7 @@ package
 				{
 					player2.moveSpeed (-5, 0);
 				}
-				*/
+				
 				if (player2.x == 0 - player2.PLAYER_SIDELENGTH)
 				{
 					player2.x = stage.stageWidth;
@@ -173,12 +172,6 @@ package
 			
 			if (dKeyDown)
 			{
-				collsion();
-				if (!collision)
-				{
-					player2.moveSpeed(5, 0);
-				}
-				/*
 				if (collision)
 				{
 					player2.moveSpeed (0, 0);
@@ -187,7 +180,7 @@ package
 				{
 					player2.moveSpeed (5, 0);
 				}
-				*/
+				
 				if (player2.x == stage.stageWidth)
 				{
 					player2.x = 0 - player2.PLAYER_SIDELENGTH;
@@ -203,7 +196,7 @@ package
 			player1.moveSpeed(0, player1JumpSpeed);
 			
 			//Collisions
-			/*
+			
 			if ((player1.x == player2.x + player2.PLAYER_SIDELENGTH || player1.x == player2.x + player2.PLAYER_SIDELENGTH - 1 ||  player1.x == player2.x + player2.PLAYER_SIDELENGTH - 2 ||  player1.x == player2.x + player2.PLAYER_SIDELENGTH - 3 ||  player1.x == player2.x + player2.PLAYER_SIDELENGTH - 4 ||  player1.x == player2.x + player2.PLAYER_SIDELENGTH - 5) && player1.y + player1.PLAYER_SIDELENGTH > player2.y && player2.y + player2.PLAYER_SIDELENGTH > player1.y)
 			{
 				collision = true;
@@ -232,36 +225,33 @@ package
 				player1.x = player2.x - player2.PLAYER_SIDELENGTH;
 			}
 			
-			if ((player1.y + player1.PLAYER_SIDELENGTH <= player2.y + 20 && player1.y + player1.PLAYER_SIDELENGTH >= player2.y) || (player2.y + player2.PLAYER_SIDELENGTH >= player1.y && player2.y + player2.PLAYER_SIDELENGTH <= player1.y + 5)) && (player1.x >= player2.x + 1 && player1.x + player1.PLAYER_SIDELENGTH <= player2.x + player2.PLAYER_SIDELENGTH - 1))
+			if ((player1.y + player1.PLAYER_SIDELENGTH) < stage.stageHeight)
+			{
+				player1OnGround = false;
+			}
+			
+			//if ((player1.y + player1.PLAYER_SIDELENGTH = player2.y + 30 && player1.y + player1.PLAYER_SIDELENGTH >= player2.y) /*|| (player2.y + player2.PLAYER_SIDELENGTH >= player1.y && player2.y + player2.PLAYER_SIDELENGTH <= player1.y + 5))*/ && (player1.x >= player2.x + 1 && player1.x + player1.PLAYER_SIDELENGTH <= player2.x + player2.PLAYER_SIDELENGTH - 1))
+			if (player1.y + player1.PLAYER_SIDELENGTH + player1JumpSpeed >= player2.y && player1.x+player1.PLAYER_SIDELENGTH >= player2.x + 1 && player1.x <= player2.x+player2.PLAYER_SIDELENGTH - 1)
 			{
 				collision3 = true;
+				player1.y = player2.y - player1.PLAYER_SIDELENGTH;
+				player1OnGround = true;
 			}
+			
+			
+			
 			else 
 			{
 				collision3 = false;
 			}
 			
-			
+			/*
 			if (player2.x + player2.PLAYER_SIDELENGTH >= player1.x && player2.y + player1.PLAYER_SIDELENGTH > player1.y && player2.x < player1.x + player1.PLAYER_SIDELENGTH)
 			{
 				Player2 collides with player1
 				player2.x = player1.x - player1.PLAYER_SIDELENGTH;
 			}
 			*/
-		}
-		
-		private function collsion():void
-		{
-			if (player1.hitTestPoint(player2.x, player2.y + 5, true)) 
-			{
-				player1.moveSpeed(0, 0);
-				collision = true;
-			}
-			
-			else 
-			{
-				collision = false;
-			}
 		}
 		
 		private function player1Jump():void 
