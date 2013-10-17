@@ -20,7 +20,8 @@ package
 		
 		private var randomBoxSpeed:Number = (Math.random() * 13);
 		private var spaceKeyDown:Boolean = false;
-		private var numberOfBoxes:int = 0;
+		
+		private var collisionOnWall:Boolean = false;
 		
 		public function Main():void 
 		{
@@ -42,22 +43,15 @@ package
 			addEventListener (KeyboardEvent.KEY_DOWN, onKeyDown);
 			addEventListener (KeyboardEvent.KEY_UP, onKeyUp);
 			
-			for (var i:int = 0; i < numberOfBoxes;) 
-			{
-				box = new BouncyBox(stage.stageWidth, stage.stageHeight);
-				boxes.push (box);
-				addChild(box);
-				i++;
-			}
 		}
 		
 		private function onEnterFrame(event:Event):void 
 		{
-			//box.boxSpeed(randomBoxSpeed, randomBoxSpeed);
 			
-			if (spaceKeyDown)
+			
+			for each (var currentBox:BouncyBox in boxes)
 			{
-				numberOfBoxes++;
+				currentBox.update();
 			}
 		}
 		
@@ -67,6 +61,10 @@ package
 			{
 				case Keyboard.SPACE:
 					spaceKeyDown = true;
+					box = new BouncyBox(stage.stageWidth, stage.stageHeight);
+					boxes.push (box);
+					addChild(box);
+					box.spawnBox();
 					break;
 					
 				default:

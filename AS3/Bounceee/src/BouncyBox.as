@@ -10,8 +10,10 @@ package
 	{
 		public const BOX_SIDELENGTH:int = 40;
 		
-		public var stageWidth:int;
-		public var stageHeight:int;
+		private var stageWidth:int;
+		private var stageHeight:int;
+		private var boxSpeedX:Number;
+		private var boxSpeedY:Number;
 		
 		public function BouncyBox(w:int, h:int) 
 		{
@@ -22,16 +24,49 @@ package
 			this.graphics.endFill();
 		}
 		
-		public function spawnBox():void 
+		private function handleCollision():void 
 		{
-			this.x = (Math.random() * stageWidth) - BOX_SIDELENGTH;
-			this.y = (Math.random() * stageHeight) - BOX_SIDELENGTH;
+			if (this.x + BOX_SIDELENGTH  >= stage.stageWidth)
+			{
+				boxSpeedX = Math.random() * -10;
+				boxSpeedY = (Math.random() * 10) + (Math.random() * 10);
+			}
+			else if (this.x <= 0)
+			{
+				boxSpeedX = Math.random() * 10;
+				boxSpeedY = (Math.random() * 10) + (Math.random() * -10);
+			}
+			else if (this.y + BOX_SIDELENGTH >= stage.stageHeight)
+			{
+				boxSpeedY = Math.random() * -10;
+				boxSpeedX = (Math.random() * -10) + (Math.random() * 10);
+			}
+			else if (this.y <= 0)
+			{
+				boxSpeedY = Math.random() * 10;
+				boxSpeedX = (Math.random() * -10) + (Math.random() * 10);
+			}
+			else if (this.hitTestObject(
 		}
 		
-		public function boxSpeed(x:Number, y:Number):void 
+		public function update():void
 		{
-			this.x += x;
-			this.y += y;
+			handleCollision();
+			this.x += boxSpeedX;
+			this.y += boxSpeedY;
+		}
+		
+		public function spawnBox():void 
+		{
+			this.x = (Math.random() * (stageWidth - BOX_SIDELENGTH - 5)) + 5;
+			this.y = (Math.random() * (stageHeight - BOX_SIDELENGTH - 5)) + 5;
+			setBoxSpeed ((Math.random() * 10) + (Math.random() * -10), (Math.random() * 10) + (Math.random() * -10));
+		}
+		
+		public function setBoxSpeed(x:Number, y:Number):void 
+		{
+			boxSpeedX = x;
+			boxSpeedY = y;
 		}
 		
 	}
