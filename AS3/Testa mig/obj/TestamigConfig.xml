@@ -18,6 +18,18 @@
       <name>CONFIG::timeStamp</name>
       <value>'2013-11-06'</value>
     </define>
+    <define append="true">
+      <name>CONFIG::air</name>
+      <value>false</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::mobile</name>
+      <value>false</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::desktop</name>
+      <value>false</value>
+    </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
       <path-element>C:\Users\Elias\Documents\GitHub\Programmering\AS3\Testa mig\src</path-element>

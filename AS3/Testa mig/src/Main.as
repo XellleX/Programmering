@@ -14,9 +14,9 @@ package
 	public class Main extends Sprite 
 	{
 		private var randomHeight:Number;
-		private var debugField:TextField = new TextField();
 		private var rectangle:Sprite = new Sprite;
-		private var spawnX:int = 20;
+		private var spawnX:int = 0;
+		private var reset:int = 0;
 		
 		public function Main():void 
 		{
@@ -28,13 +28,10 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			debugField.width = stage.stageWidth;
-			debugField.height = stage.stageHeight;
-			debugField.selectable = false;
-			addChild(debugField);
-			addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-			addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 		}
+		
+		
 		
 		private function onKeyDown(event:KeyboardEvent):void 
 		{
@@ -43,27 +40,33 @@ package
 				case Keyboard.SPACE:
 					for (var i:int = 0; i < 10; i++) 
 					{
+						if (reset == 10)
+						{
+							rectangle.graphics.clear();
+							spawnX = 0;
+							reset = 0;
+						}
+						
+						if (i > 0)
+						{
+							spawnX += 87;
+							
+							if (spawnX > stage.stageWidth - 20)
+							{
+								spawnX = stage.stageWidth - 20;
+							}
+							
+						}
 						
 						randomHeight = (Math.random() * -100) - 10;
-						spawnX += 40;
+						
+						reset ++;
 						
 						rectangle.graphics.beginFill (0x00000);
-						rectangle.graphics.drawRect (spawnX, stage.stageHeight - 200, 20, randomHeight);
-						rectangle.graphics.endFill()
+						rectangle.graphics.drawRect (spawnX, stage.stageHeight, 20, randomHeight);
+						rectangle.graphics.endFill();
 						addChild(rectangle);
 					}
-					break;
-				default:
-					break;
-			}
-		}
-		
-		private function onKeyUp(event:KeyboardEvent):void 
-		{
-			switch (event.keyCode) 
-			{
-				case Keyboard.SPACE:
-					
 					break;
 				default:
 					break;
