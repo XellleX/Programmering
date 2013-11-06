@@ -10,6 +10,7 @@ package
 	{
 		public const BOX_SIDELENGTH:int = 40;
 		
+		private var randomBoxColor:uint = 0xFFFFFF * (Math.random() * 200);
 		private var stageWidth:int;
 		private var stageHeight:int;
 		private var boxSpeedX:Number;
@@ -19,7 +20,7 @@ package
 		{
 			stageWidth = w;
 			stageHeight = h;
-			this.graphics.beginFill(0x00FF40);
+			this.graphics.beginFill(randomBoxColor);
 			this.graphics.drawRect (0, 0, BOX_SIDELENGTH, BOX_SIDELENGTH);
 			this.graphics.endFill();
 		}
@@ -46,7 +47,7 @@ package
 				boxSpeedY = Math.random() * 10;
 				boxSpeedX = (Math.random() * -10) + (Math.random() * 10);
 			}
-			else if (this.hitTestObject(
+			
 		}
 		
 		public function update():void
