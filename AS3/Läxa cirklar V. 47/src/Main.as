@@ -36,7 +36,13 @@ package
 		
 		private function clickOnCircle(m:MouseEvent):void 
 		{
-			
+			for (var i:int = 0; i < 20; i++) 
+			{
+				if (m.target == circles [i])
+				{
+					removeChild(circles [i]);
+				}
+			}
 		}
 		
 		private function spawnCircle(e:KeyboardEvent):void 
