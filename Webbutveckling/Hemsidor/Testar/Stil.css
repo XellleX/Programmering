@@ -3,8 +3,15 @@ body
 	background-color: #5549f8;
 }
 
-#Text{
+header
+{
 	height: 100px;
 	margin: -8px -8px -0px -8px;
-	background-color: black;
+	background-color: white;
+}
+
+h1
+{
+	text-align: center;
+	margin: -8px -8px -0px -8px;
 }
