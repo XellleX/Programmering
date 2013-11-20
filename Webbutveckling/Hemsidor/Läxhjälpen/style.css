@@ -34,9 +34,17 @@ header
 	text-align: center;
 }
 
+h1:first-letter
+{
+	color: #00af64;
+}
+
 .startpage > header h1
 {
+	font-family: "Merienda One", cursive;
 	font-size: 500%;
+	display: inline-block;
+	vertical-align: 50%;
 }
 
 .tagline
@@ -61,6 +69,7 @@ header
 
 .startpage > section > h2
 {
+	font-family: "Merienda One", cursive;
 	margin: 0 0 1em;
 	padding: 2em 0;
 	background-color: #f5f5f5;
