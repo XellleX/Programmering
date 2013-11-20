@@ -15,19 +15,19 @@ package
 	public class Main extends Sprite 
 	{
 		private var circle:Sprite;
-		private var gameOverScreen:Sprite = new Sprite();
+		private var gameOverScreen:Sprite = new Sprite();		
 		
 		private var circles:Vector.<Sprite> = new Vector.<Sprite>();
 		
 		private var circleSpawnX:int = 0;
 		private var circleSpawnY:int = 50;
-		private var numberOfCircles:int = 0;
-		private var score:int = 0;
-		private var circleOfDoom:int;
+		private var numberOfCircles:int = 0;		//så att jag kan hålla koll på antalet cirklar jag har
+		private var score:int = 0;					//spelarens poäng
+		private var circleOfDoom:int;				//cirkeln som gör så att man förlorar
 		
 		private var scoreBoard:TextField = new TextField();
-		private var gameOverText:TextField = new TextField();
-		private var startText:TextField = new TextField();
+		private var gameOverText:TextField = new TextField();		//texten som skrivs när man förlorar
+		private var startText:TextField = new TextField();			//texten som står innan man startar
 		
 		public function Main():void 
 		{
@@ -48,8 +48,8 @@ package
 			gameOverScreen.graphics.endFill();
 			
 			gameOverText.textColor = 0xFFFFFF;
-			gameOverText.x = stage.stageWidth / 2;
-			gameOverText.y = stage.stageHeight / 2;
+			gameOverText.x = stage.stageWidth / 2;		//för att hamna i mitten
+			gameOverText.y = stage.stageHeight / 2;		//för att hamna i mitten
 			gameOverText.wordWrap = true;
 			gameOverText.selectable = false;
 			
@@ -67,26 +67,26 @@ package
 				case Keyboard.SPACE:
 					
 					addChild(scoreBoard);
-					startText.visible = false;
+					startText.visible = false;		//för att texten inte ska vara i mitten av skärmen när man spelar
 					
-					while (numberOfCircles > 0) 
+					while (numberOfCircles > 0) 	//tar bort cirklarna
 					{
 						removeChild (circles [0]);
 						circles.shift();
 						numberOfCircles --;
 					}
 					
-					for (var i:int = 0; i < 20; i++) 
+					for (var i:int = 0; i < 20; i++) 	
 					{
 						score = 0;
 						scoreBoard.text = "Points: " + score.toString();
 						
-						circleOfDoom = 20 * Math.random();
+						circleOfDoom = 20 * Math.random();		//för att "circleOfDoom" ska bli olika varje gång, använder talet mellan 0-20 för att vectorn har så många element.
 						
 						circle = new Sprite();
 						
-						circleSpawnX = stage.stageWidth * Math.random();
-						circleSpawnY = stage.stageHeight * Math.random();
+						circleSpawnX = stage.stageWidth * Math.random();		//så cirkeln får en random x position
+						circleSpawnY = stage.stageHeight * Math.random();		//så cirkeln får en random y position
 						
 						circle.graphics.beginFill(0xFFFF00);
 						circle.graphics.drawCircle (circleSpawnX, circleSpawnY, 20);
@@ -95,12 +95,12 @@ package
 						circles.push (circle);
 						addChild (circles [i]);
 						
-						numberOfCircles ++;
+						numberOfCircles ++;		//så att jag vet antalet cirklar
 						
-						circle.addEventListener (MouseEvent.CLICK, clickOnCircle);
+						circle.addEventListener (MouseEvent.CLICK, clickOnCircle);		//så att jag sedan kan klicka på cirklarna
 					}
 					
-					gameOverScreen.visible = false;
+					gameOverScreen.visible = false;		//för att man inte ska ha den svarta skärmen om man vill spela igen
 					break;
 				default:
 					break;
@@ -109,14 +109,14 @@ package
 		
 		private function clickOnCircle(m:MouseEvent):void 
 		{
-			for (var i:int = 0; i < 20; i++) 
+			for (var i:int = 0; i < 20; i++)
 			{
-				if (m.target == circles [i])
+				if (m.target == circles [i])	//kollar vilken cirkel man klicka på
 				{
-					if (i == circleOfDoom)
+					if (i == circleOfDoom) //kollar om det är den förlorar cirkeln man klickat på
 					{
-						addChild(gameOverScreen);
-						gameOverScreen.visible = true;
+						addChild(gameOverScreen);		//gör så att man ser en annan "sida"
+						gameOverScreen.visible = true;	//gör så att den syns
 						
 						if (score <= 3)
 						{
@@ -151,9 +151,9 @@ package
 					
 					else 
 					{
-						circles [i].visible = false;
-						score ++;
-						scoreBoard.text = "Points: " + score.toString();
+						circles [i].visible = false;	//för att göra så att man inte kan klicka på den igen, och att den inte ska synas
+						score ++;						//gör så att spelaren får poäng om den klickar på rätt cirkel
+						scoreBoard.text = "Points: " + score.toString();	//för att visa spelaren vad den har för poäng
 					}
 				}
 			}
