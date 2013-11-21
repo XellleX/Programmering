@@ -7,6 +7,7 @@ package
 	import flash.external.ExternalInterface;
 	import flash.text.TextField;
 	import flash.ui.Keyboard;
+	import flash.text.TextFormat;
 	
 	/**
 	 * ...
@@ -28,6 +29,8 @@ package
 		private var scoreBoard:TextField = new TextField();
 		private var gameOverText:TextField = new TextField();
 		private var startText:TextField = new TextField();
+		
+		private var textSize:TextFormat = new TextFormat();
 		
 		public function Main():void 
 		{
