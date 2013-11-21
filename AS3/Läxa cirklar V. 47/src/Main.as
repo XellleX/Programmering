@@ -8,6 +8,7 @@ package
 	import flash.text.TextField;
 	import flash.ui.Keyboard;
 	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	
 	/**
 	 * ...
@@ -30,7 +31,8 @@ package
 		private var gameOverText:TextField = new TextField();		//texten som skrivs när man förlorar
 		private var startText:TextField = new TextField();			//texten som står innan man startar
 		
-		private var textSize:TextFormat = new TextFormat();
+		private var fixingStartText:TextFormat = new TextFormat();
+		private var fixingGameOverText:TextFormat = new TextFormat();
 		
 		public function Main():void 
 		{
@@ -50,16 +52,27 @@ package
 			gameOverScreen.graphics.drawRect (0, 0, stage.stageWidth, stage.stageHeight);
 			gameOverScreen.graphics.endFill();
 			
-			gameOverText.textColor = 0xFFFFFF;
-			gameOverText.x = stage.stageWidth / 2;		//för att hamna i mitten
+			fixingGameOverText.size = 20;
+			fixingGameOverText.align = TextFormatAlign.CENTER;
+			fixingGameOverText.font = "Bradley Hand ITC";
+			fixingGameOverText.color = 0xFFFFFF;
+			
+			gameOverText.width = stage.stageWidth;
 			gameOverText.y = stage.stageHeight / 2;		//för att hamna i mitten
 			gameOverText.wordWrap = true;
 			gameOverText.selectable = false;
 			
-			startText.x = stage.stageWidth / 2;
-			startText.y = stage.stageHeight / 2;
+			fixingStartText.size = 30;
+			fixingStartText.align = TextFormatAlign.CENTER;
+			fixingStartText.font = "Algerian";
+			fixingStartText.color = 0x800000;
+			
+			startText.height = 40;
+			startText.y = (stage.stageHeight / 2) - 40;
+			startText.width = stage.stageWidth;
 			startText.selectable = false;
 			startText.text = "Press space to begin";
+			startText.setTextFormat(fixingStartText);
 			addChild(startText);
 		}
 		
@@ -150,6 +163,8 @@ package
 							gameOverText.text = "You won the game! Congratulations my friend :) \n" + "Press Space to play again";
 							addChild(gameOverText);
 						}
+						
+						gameOverText.setTextFormat(fixingGameOverText);
 					}
 					
 					else 
