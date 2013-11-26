@@ -101,10 +101,10 @@ package
 						
 						circle = new Sprite();
 						
-						circleSpawnX = stage.stageWidth * Math.random();		//så cirkeln får en random x position
-						circleSpawnY = stage.stageHeight * Math.random();		//så cirkeln får en random y position
+						circleSpawnX = ((stage.stageWidth - 40) * Math.random()) + 20;		//så cirkeln får en random x position
+						circleSpawnY = ((stage.stageHeight - 40) * Math.random()) + 20;		//så cirkeln får en random y position
 						
-						circle.graphics.beginFill(0xFFFF00);
+						circle.graphics.beginFill(0xFF0000);
 						circle.graphics.drawCircle (circleSpawnX, circleSpawnY, 20);
 						circle.graphics.endFill();
 						

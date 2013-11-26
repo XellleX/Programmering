@@ -62,7 +62,7 @@ package
 			t.y = 250
 			t.wordWrap = true;
 			t.background = true
-			t.backgroundColor = uint(0x000000);
+			//t.backgroundColor = uint(0x000000);
 			t.textColor = 0xFF80FF;
 			addChild(t);
 			
