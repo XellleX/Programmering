@@ -15,7 +15,11 @@ package
 	 */
 	public class Main extends Sprite 
 	{
+		private var testX:int;
+		private var testY:int;
+		
 		private var tile:Sprite;
+		private var hej:Tile = new Tile();
 		
 		private var battlefieldX:Vector.<Vector.<Sprite>> = new Vector.<Vector.<Sprite>>(); //tiles horizontal
 		private var battlefieldY:Vector.<Sprite>; //Tiles vertical
@@ -25,8 +29,6 @@ package
 		private var tileY:int = 50; //Placement of the tile on the y coordinate
 		
 		private var scoreboard:TextField = new TextField();
-		
-		private var color:ColorTransform = new ColorTransform(); //Changes the color when you hit a ship
 		
 		private var hits:int = 0;
 		private var misses:int = 0;
@@ -53,6 +55,8 @@ package
 		
 		private function resetBoard():void //A function that reset everything, score, tiles and so on.
 		{
+			testX = Math.random() * 10;
+			testY = Math.random() * 10;
 			tileX = 50; 
 			hits = 0;
 			misses = 0;
@@ -68,11 +72,11 @@ package
 					battlefieldX.shift();
 				}
 			}
-					
+			
 			for (var i:int = 0; i < 10; i++) //make new tiles and vectors
 			{	
 				battlefieldY = new Vector.<Sprite>();
-							
+				
 				for (var j:int = 0; j < 10; j++) 
 				{	
 					tile = new Sprite();
@@ -109,8 +113,17 @@ package
 		
 		private function onClick(m:MouseEvent):void 
 		{
-			color.color = 0x008000;
-			m.target.transform.colorTransform = color; //So it changes color when you click
+			if (m.target == battlefieldX[testX][testY])
+			{
+				hej.shipTile = true;
+			}
+			
+			else 
+			{
+				hej.shipTile = false;
+			}
+			hej.hitAndMiss();
+			m.target.transform.colorTransform = hej.color; //So it changes color when you click
 			hits ++;
 			scoreboard.text = "Hits: " + hits.toString();
 		}
