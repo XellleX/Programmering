@@ -1,0 +1,32 @@
+body
+{
+	margin: auto;
+	width: 100%;
+	font-size: 130%;
+}
+
+#logo
+{
+	width: 10%;
+	height: 10%;
+}
+
+header > h1
+{
+	border: 1px solid #000;
+	display: inline-block;
+	vertical-align: 100%;
+}
+
+header
+{	
+	text-align: center;
+	margin-bottom: 10%;
+}
+
+#bild
+{
+	width: 70%;
+	height: 80%;
+	margin: auto;
+}
