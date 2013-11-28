@@ -10,7 +10,7 @@ package
 	
 	public class Tile 
 	{
-		public var color:ColorTransform = new ColorTransform();
+		public var tileColor:ColorTransform = new ColorTransform();
 		public var shipTile:Boolean;
 		public var hits:int = 0;
 		public var misses:int = 0;
@@ -24,13 +24,13 @@ package
 		{
 			if (shipTile)
 			{
-				color.color = 0xC0C0C0;
+				tileColor.color = 0xC0C0C0;
 				hits ++;
 			}
 			
 			else 
 			{
-				color.color = 0x00FF00;
+				tileColor.color = 0x00FF00;
 				misses ++;
 			}
 		}
