@@ -33,8 +33,6 @@ package
 		
 		private var scoreboard:TextField = new TextField();
 		
-		private var hits:int = 0;
-		private var misses:int = 0;
 		private var numberOfTiles:int = 0; //Knows the amount of tiles that is on the screen
 		
 		public function Main():void 
@@ -55,6 +53,7 @@ package
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			
+			resetBoard();
 		}
 		
 		private function resetBoard():void //A function that reset everything, score, tiles and so on.
@@ -62,9 +61,9 @@ package
 			testX = Math.random() * 10;
 			testY = Math.random() * 10;
 			tileX = 50; 
-			hits = 0;
-			misses = 0;
-			scoreboard.text = "Hits: " + hits.toString() + "\n \n \n" + "Misses: " + misses.toString();
+			tileChange.hits = 0;
+			tileChange.misses = 0;
+			scoreboard.text = "Hits: " + tileChange.hits.toString() + "\n \n \n" + "Misses: " + tileChange.misses.toString();
 			
 			while (numberOfTiles > 0) //removes the tiles, and the battlefieldY vectors
 			{
@@ -130,8 +129,7 @@ package
 			
 			tileChange.hitAndMiss();
 			m.target.transform.colorTransform = tileChange.color; //So it changes color when you click
-			hits ++;
-			scoreboard.text = "Hits: " + hits.toString() + "\n \n \n" + "Misses: " + misses.toString();
+			scoreboard.text = "Hits: " + tileChange.hits.toString() + "\n \n \n" + "Misses: " + tileChange.misses.toString();
 		}
 		
 		
