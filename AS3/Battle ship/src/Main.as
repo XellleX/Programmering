@@ -127,9 +127,18 @@ package
 		
 		private function resetBoard():void //A function that reset everything, score, tiles and so on.
 		{
+			while () 
+			{
+				
+			}
+			
 			battleShipPlacement.shipPlacement(3);
+			battleShipPlacement.shipPlacement(3);
+			
 			navigationNumbers = 0;
+			
 			tileX = 50; 
+			
 			tileChange.hits = 0;
 			tileChange.misses = 0;
 			scoreboard.text = "Hits: " + tileChange.hits.toString() + "\n \n \n" + "Misses: " + tileChange.misses.toString();
@@ -209,14 +218,26 @@ package
 		
 		private function onClick(m:MouseEvent):void 
 		{
-			if (m.target == battlefieldX[battleShipPlacement.shipBody[0]][battleShipPlacement.shipBody[0]])
-			{
-				tileChange.shipTile = true;
-			}
+			tileChange.shipTile = false;
 			
-			else 
+			for (var i:int = 0; i < battleShipPlacement.shipBody.length - 1; i++) 
 			{
-				tileChange.shipTile = false;
+				if (battleShipPlacement.verticalOrHorizontal == 0)
+				{
+					if (m.target == battlefieldX[battleShipPlacement.shipBody[0]][battleShipPlacement.shipBody[i + 1]])
+					{
+						tileChange.shipTile = true;
+					}
+				}
+				
+				else if (battleShipPlacement.verticalOrHorizontal == 1)
+				{
+					if (m.target == battlefieldX[battleShipPlacement.shipBody[i + 1]][battleShipPlacement.shipBody[0]])
+					{
+						tileChange.shipTile = true;
+					}
+				}
+				
 			}
 			
 			tileChange.hitAndMiss();

@@ -11,6 +11,7 @@ package
 		
 		public var verticalOrHorizontal:int;
 		public var shipBody:Vector.<int> = new Vector.<int>();
+		public var ships:Vector.<Vector.<int>> = new Vector.<Vector.<int>>();
 		
 		public function BattleShip() 
 		{
@@ -18,22 +19,17 @@ package
 		}
 		
 		public function shipPlacement(shipLength:int):void 
-		{
-			while (shipBody.length > 0) 
-			{
-				shipBody.shift();
-			}
+		{	
+			shipStartX = Math.random() * 9;
+			shipStartY = Math.random() * 9;
 			
-			shipStartX = Math.random() * 10;
-			shipStartY = Math.random() * 10;
-			
-			verticalOrHorizontal = Math.random() * 1;
+			verticalOrHorizontal = Math.round(Math.random() * 1);
 			
 			if (verticalOrHorizontal == 0)
 			{
 				shipBody.push (shipStartX);
 				
-				if (shipStartY > 5)
+				if (shipStartY <= 5)
 				{
 					for (var i:int = 0; i < shipLength; i++) 
 					{
@@ -50,13 +46,15 @@ package
 						shipStartY --;
 					}
 				}
+				
+				ships.push (shipBody);
 			}
 			
 			else if (verticalOrHorizontal == 1)
 			{
 				shipBody.push (shipStartY);
 				
-				if (shipStartX > 5)
+				if (shipStartX <= 5)
 				{
 					for (var i:int = 0; i < shipLength; i++) 
 					{
@@ -73,6 +71,8 @@ package
 						shipStartX --;
 					}
 				}
+				
+				ships.push (shipBody);
 			}
 		}
 	}

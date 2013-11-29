@@ -30,7 +30,7 @@ package
 			
 			else 
 			{
-				tileColor.color = 0x00FF00;
+				tileColor.color = 0xFF0000;
 				misses ++;
 			}
 		}
