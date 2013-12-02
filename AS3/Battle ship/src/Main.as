@@ -22,7 +22,7 @@ package
 		
 		private var tileX:int = 50; //Placement of the tile on the x coordinate
 		private const TILE_SIDE:int = 45;
-		private var tileY:int = 50; //Placement of the tile on the y coordinate
+		private var tileY:int = 30; //Placement of the tile on the y coordinate
 		private var numberOfTiles:int = 0; //Knows the amount of tiles that is on the screen
 		
 		private var battlefieldX:Vector.<Vector.<Sprite>> = new Vector.<Vector.<Sprite>>(); //this vector is for putting in battlefieldY
@@ -33,8 +33,6 @@ package
 		private var navigation:Vector.<Sprite> = new Vector.<Sprite>();
 		
 		private var tileChange:Tile = new Tile();
-		
-		private var color:ColorTransform = new ColorTransform();
 		
 		private var scoreboard:TextField = new TextField();
 		
@@ -127,13 +125,20 @@ package
 		
 		private function resetBoard():void //A function that reset everything, score, tiles and so on.
 		{
-			while () 
+			for (var k:int = 0; k < battleShipPlacement.ships.length;) 
 			{
+				while (battleShipPlacement.ships[k].length > 0) 
+				{
+					battleShipPlacement.ships[k].shift();
+				}
 				
+				battleShipPlacement.ships.shift();
+				battleShipPlacement.clickVerticalOrHorizontal.shift();
 			}
 			
 			battleShipPlacement.shipPlacement(3);
-			battleShipPlacement.shipPlacement(3);
+			battleShipPlacement.shipPlacement(2);
+			battleShipPlacement.shipPlacement(4);
 			
 			navigationNumbers = 0;
 			
@@ -198,7 +203,7 @@ package
 					battlefieldX.push (battlefieldY);
 				}
 				tileX += TILE_SIDE + 5;
-				tileY = 50;
+				tileY = 30;
 			}
 		}
 		
@@ -220,24 +225,27 @@ package
 		{
 			tileChange.shipTile = false;
 			
-			for (var i:int = 0; i < battleShipPlacement.shipBody.length - 1; i++) 
+			for (var j:int = 0; j < battleShipPlacement.ships.length; j++) 
 			{
-				if (battleShipPlacement.verticalOrHorizontal == 0)
+				for (var i:int = 0; i < battleShipPlacement.ships[j].length - 1; i++) 
 				{
-					if (m.target == battlefieldX[battleShipPlacement.shipBody[0]][battleShipPlacement.shipBody[i + 1]])
+					if (battleShipPlacement.clickVerticalOrHorizontal[j] == 0)
 					{
-						tileChange.shipTile = true;
+						if (m.target == battlefieldX[battleShipPlacement.ships[j][0]][battleShipPlacement.ships[j][i + 1]])
+						{
+							tileChange.shipTile = true;
+						}
 					}
-				}
-				
-				else if (battleShipPlacement.verticalOrHorizontal == 1)
-				{
-					if (m.target == battlefieldX[battleShipPlacement.shipBody[i + 1]][battleShipPlacement.shipBody[0]])
+					
+					else if (battleShipPlacement.clickVerticalOrHorizontal[j] == 1)
 					{
-						tileChange.shipTile = true;
+						if (m.target == battlefieldX[battleShipPlacement.ships[j][i + 1]][battleShipPlacement.ships[j][0]])
+						{
+							tileChange.shipTile = true;
+						}
 					}
+					
 				}
-				
 			}
 			
 			tileChange.hitAndMiss();

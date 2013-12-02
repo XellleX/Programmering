@@ -6,12 +6,13 @@ package
 	 */
 	public class BattleShip 
 	{
-		public var shipStartX:int;
-		public var shipStartY:int;
+		private var shipStartX:int;
+		private var shipStartY:int;
 		
 		public var verticalOrHorizontal:int;
-		public var shipBody:Vector.<int> = new Vector.<int>();
+		public var shipBody:Vector.<int>;
 		public var ships:Vector.<Vector.<int>> = new Vector.<Vector.<int>>();
+		public var clickVerticalOrHorizontal:Vector.<int> = new Vector.<int>();
 		
 		public function BattleShip() 
 		{
@@ -20,10 +21,12 @@ package
 		
 		public function shipPlacement(shipLength:int):void 
 		{	
+			shipBody = new Vector.<int>();
 			shipStartX = Math.random() * 9;
 			shipStartY = Math.random() * 9;
 			
 			verticalOrHorizontal = Math.round(Math.random() * 1);
+			clickVerticalOrHorizontal.push (verticalOrHorizontal);
 			
 			if (verticalOrHorizontal == 0)
 			{
@@ -47,7 +50,7 @@ package
 					}
 				}
 				
-				ships.push (shipBody);
+				//shipsVertical.push (shipBody);
 			}
 			
 			else if (verticalOrHorizontal == 1)
@@ -72,8 +75,9 @@ package
 					}
 				}
 				
-				ships.push (shipBody);
+				//shipsHorizontal.push (shipBody);
 			}
+			ships.push (shipBody);
 		}
 	}
 
