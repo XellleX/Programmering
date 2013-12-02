@@ -2,31 +2,63 @@ body
 {
 	margin: auto;
 	width: 100%;
-	font-size: 130%;
 }
 
 #logo
 {
-	width: 10%;
-	height: 10%;
+	width: 8%;
+	height: 8%;
 }
 
 header > h1
 {
-	border: 1px solid #000;
 	display: inline-block;
-	vertical-align: 100%;
+	vertical-align: 60%;
 }
 
 header
 {	
 	text-align: center;
-	margin-bottom: 10%;
 }
 
 #bild
 {
-	width: 70%;
-	height: 80%;
+	width: 100%;
+}
+
+#content
+{
+	width: 58%;
 	margin: auto;
+	background-color: #EEE;
+}
+
+#content h2, #content h3
+{
+	font-family: sans-serif;
+}
+
+#content > section p
+{
+	font-family: serif;
+	font-size: 120%;
+}
+
+footer
+{
+	text-align: center;
+	font-size: 120%;
+	font-family: sans-serif;
+}
+
+#nav
+{
+	border: 1px solid #000;
+	display: inline-block;
+}
+
+#nav p
+{
+	margin-bottom: 1%;
+	margin-top: 1%;
 }

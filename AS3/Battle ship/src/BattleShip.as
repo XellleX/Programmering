@@ -28,13 +28,16 @@ package
 			verticalOrHorizontal = Math.round(Math.random() * 1);
 			clickVerticalOrHorizontal.push (verticalOrHorizontal);
 			
+			var i:int;
+			var j:int;
+			
 			if (verticalOrHorizontal == 0)
 			{
 				shipBody.push (shipStartX);
 				
 				if (shipStartY <= 5)
 				{
-					for (var i:int = 0; i < shipLength; i++) 
+					for (i = 0; i < shipLength; i++) 
 					{
 						shipBody.push (shipStartY);
 						shipStartY ++;
@@ -43,14 +46,12 @@ package
 				
 				else
 				{
-					for (var j:int = 0; j < shipLength; j++) 
+					for (j = 0; j < shipLength; j++) 
 					{
 						shipBody.push (shipStartY);
 						shipStartY --;
 					}
 				}
-				
-				//shipsVertical.push (shipBody);
 			}
 			
 			else if (verticalOrHorizontal == 1)
@@ -59,7 +60,7 @@ package
 				
 				if (shipStartX <= 5)
 				{
-					for (var i:int = 0; i < shipLength; i++) 
+					for (i = 0; i < shipLength; i++) 
 					{
 						shipBody.push (shipStartX);
 						shipStartX ++;
@@ -68,14 +69,12 @@ package
 				
 				else
 				{
-					for (var j:int = 0; j < shipLength; j++) 
+					for (j = 0; j < shipLength; j++) 
 					{
 						shipBody.push (shipStartX);
 						shipStartX --;
 					}
 				}
-				
-				//shipsHorizontal.push (shipBody);
 			}
 			ships.push (shipBody);
 		}

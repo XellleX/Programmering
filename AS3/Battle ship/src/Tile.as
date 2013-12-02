@@ -14,6 +14,7 @@ package
 		public var shipTile:Boolean;
 		public var hits:int = 0;
 		public var misses:int = 0;
+		private var hit:Boolean = false;
 		
 		public function Tile() 
 		{
