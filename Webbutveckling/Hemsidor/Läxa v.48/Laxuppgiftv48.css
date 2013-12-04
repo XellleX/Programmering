@@ -26,12 +26,7 @@ header
 	width: 100%;
 }
 
-#content
-{
-	width: 58%;
-	margin: auto;
-	background-color: #EEE;
-}
+
 
 #content h2, #content h3
 {
@@ -53,12 +48,28 @@ footer
 
 #nav
 {
-	border: 1px solid #000;
 	display: inline-block;
+	width: 7%;
+	background-color: #DDD;
 }
 
 #nav p
 {
 	margin-bottom: 1%;
 	margin-top: 1%;
+	font-size: 120%;
+	text-decoration: underline;
+}
+
+#navlist
+{
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#text
+{
+	width: 58%;
+	margin: auto;
+	background-color: #EEE;
 }
