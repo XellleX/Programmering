@@ -18,11 +18,8 @@ package
 	 */
 	public class Main extends Sprite 
 	{	
-		private var tile:Sprite;
+		private var tile:Tile;
 		
-		private var tileX:int = 50; //Placement of the tile on the x coordinate
-		private const TILE_SIDE:int = 45;
-		private var tileY:int = 30; //Placement of the tile on the y coordinate
 		private var numberOfTiles:int = 0; //Knows the amount of tiles that is on the screen
 		
 		private var battlefieldX:Vector.<Vector.<Sprite>> = new Vector.<Vector.<Sprite>>(); //this vector is for putting in battlefieldY
@@ -43,6 +40,9 @@ package
 		private var navigationImprovement:TextFormat = new TextFormat();
 		
 		private var battleShipPlacement:BattleShip = new BattleShip();
+		
+		//public var hits:int = 0;
+		//public var misses:int = 0;
 		
 		public function Main():void 
 		{
@@ -72,12 +72,7 @@ package
 		{
 			if (navTileOrTile == "tile")
 			{
-				tile = new Sprite();
-				tile.graphics.beginFill(0x00FFFF);
-				tile.graphics.drawRect (tileX, tileY, TILE_SIDE, TILE_SIDE);
-				tile.graphics.endFill();
-				
-				tileY += TILE_SIDE + 5; //So they will have 5 margin between each other
+				tile = new Tile();
 				
 				tile.addEventListener (MouseEvent.CLICK, onClick);
 				
@@ -88,16 +83,26 @@ package
 			{	
 				navigationTile = new Sprite();
 				navigationTile.graphics.beginFill(0x000000);
-				navigationTile.graphics.drawRect (tileX, tileY, TILE_SIDE, TILE_SIDE);
+				navigationTile.graphics.drawRect (0, 0, tileChange.TILE_SIDE, tileChange.TILE_SIDE);
 				navigationTile.graphics.endFill();
 				
 				navigation.push (navigationTile);
 				
 				navigationField = new TextField();
-				navigationField.x = tileX;
-				navigationField.y = tileY;
-				navigationField.width = TILE_SIDE;
-				navigationField.height = TILE_SIDE;
+				if (numberOfTiles == 0)
+				{
+					navigationField.x = 0;
+					navigationField.y = 0;
+				}
+				
+				else
+				{
+					navigationField.x = tile.x;
+					navigationField.y = tile.y;
+				}
+				
+				navigationField.width = tileChange.TILE_SIDE;
+				navigationField.height = tileChange.TILE_SIDE;
 				navigationField.selectable = false;
 				
 				if (navigationNumbers == 0)
@@ -119,7 +124,7 @@ package
 				navigationField.setTextFormat(navigationImprovement);
 				navFields.push (navigationField);
 				
-				tileY += TILE_SIDE + 5;
+				//tile.y += tileChange.TILE_SIDE + 5;
 			}
 		}
 		
@@ -142,7 +147,7 @@ package
 			
 			navigationNumbers = 0;
 			
-			tileX = 50; 
+			//tile.x = 0; 
 			
 			tileChange.hits = 0;
 			tileChange.misses = 0;
@@ -193,6 +198,7 @@ package
 					else
 					{
 						drawTile("tile");
+						tile.y += 50 + (j * (tileChange.TILE_SIDE + 5));
 						battlefieldY.push (tile);
 						addChild(battlefieldY[j - 1]);
 					}
@@ -202,8 +208,7 @@ package
 				{
 					battlefieldX.push (battlefieldY);
 				}
-				tileX += TILE_SIDE + 5;
-				tileY = 30;
+				
 			}
 		}
 		
@@ -223,6 +228,10 @@ package
 		
 		private function onClick(m:MouseEvent):void 
 		{
+			// answer = Tile(m.target).clicked();
+			
+			// return 
+			
 			tileChange.shipTile = false;
 			
 			for (var j:int = 0; j < battleShipPlacement.ships.length; j++) 

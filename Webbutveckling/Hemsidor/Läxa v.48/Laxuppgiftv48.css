@@ -46,14 +46,14 @@ footer
 	font-family: sans-serif;
 }
 
-#nav
+.startpage > nav
 {
 	display: inline-block;
 	width: 7%;
 	background-color: #DDD;
 }
 
-#nav p
+.startpage > nav p
 {
 	margin-bottom: 1%;
 	margin-top: 1%;
