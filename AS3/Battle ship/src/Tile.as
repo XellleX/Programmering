@@ -11,12 +11,12 @@ package
 	
 	public class Tile extends Sprite
 	{
-		public const TILE_SIDE:int = 45;
+		public static const TILE_SIDE:int = 45;
 		
 		public var tileColor:ColorTransform = new ColorTransform();
 		
 		public var shipTile:Boolean;
-		
+		public var hit:Boolean;
 		public var hits:int = 0;
 		public var misses:int = 0;
 		
@@ -25,6 +25,7 @@ package
 			this.graphics.beginFill(0x00FFFF);
 			this.graphics.drawRect(0, 0, TILE_SIDE, TILE_SIDE);
 			this.graphics.endFill();
+			this.hit = false;
 		}
 		
 		public function hitAndMiss():void 
@@ -38,8 +39,14 @@ package
 			{
 				tileColor.color = 0xFF0000;
 			}
+			
+			this.hit = true;
 		}
 		
+		public function clicked():void 
+		{
+			
+		}
 	}
 
 }

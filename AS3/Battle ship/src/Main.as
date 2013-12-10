@@ -17,13 +17,13 @@ package
 	 * @author Elias
 	 */
 	public class Main extends Sprite 
-	{	
+	{
 		private var tile:Tile;
 		
 		private var numberOfTiles:int = 0; //Knows the amount of tiles that is on the screen
 		
-		private var battlefieldX:Vector.<Vector.<Sprite>> = new Vector.<Vector.<Sprite>>(); //this vector is for putting in battlefieldY
-		private var battlefieldY:Vector.<Sprite>; //Tiles vertical
+		private var battlefieldX:Vector.<Vector.<Tile>> = new Vector.<Vector.<Tile>>(); //this vector is for putting in battlefieldY
+		private var battlefieldY:Vector.<Tile>; //Tiles vertical
 		
 		private var navigationTile:Sprite;
 		
@@ -83,26 +83,15 @@ package
 			{	
 				navigationTile = new Sprite();
 				navigationTile.graphics.beginFill(0x000000);
-				navigationTile.graphics.drawRect (0, 0, tileChange.TILE_SIDE, tileChange.TILE_SIDE);
+				navigationTile.graphics.drawRect (0, 0, Tile.TILE_SIDE, Tile.TILE_SIDE);
 				navigationTile.graphics.endFill();
 				
 				navigation.push (navigationTile);
 				
 				navigationField = new TextField();
-				if (numberOfTiles == 0)
-				{
-					navigationField.x = 0;
-					navigationField.y = 0;
-				}
 				
-				else
-				{
-					navigationField.x = tile.x;
-					navigationField.y = tile.y;
-				}
-				
-				navigationField.width = tileChange.TILE_SIDE;
-				navigationField.height = tileChange.TILE_SIDE;
+				navigationField.width = Tile.TILE_SIDE;
+				navigationField.height = Tile.TILE_SIDE;
 				navigationField.selectable = false;
 				
 				if (navigationNumbers == 0)
@@ -124,7 +113,7 @@ package
 				navigationField.setTextFormat(navigationImprovement);
 				navFields.push (navigationField);
 				
-				//tile.y += tileChange.TILE_SIDE + 5;
+				//tile.y += Tile.TILE_SIDE + 5;
 			}
 		}
 		
@@ -176,7 +165,7 @@ package
 			{	
 				if (i != 0)
 				{
-					battlefieldY = new Vector.<Sprite>();
+					battlefieldY = new Vector.<Tile>();
 				}
 				
 				for (var j:int = 0; j < 11; j++) 
@@ -186,6 +175,8 @@ package
 						drawTile("navTile");
 						addChild(navigation[j]);
 						addChild(navFields[j]);
+						navigationTile.y += j * (Tile.TILE_SIDE + 5);
+						navigationField.y += j * (Tile.TILE_SIDE + 5);
 					}
 					
 					else if (j == 0)
@@ -193,12 +184,15 @@ package
 						drawTile("navTile");
 						addChild(navigation[j + 10 + i]);
 						addChild(navFields[j + 10 + i]);
+						navigationTile.x += i * (Tile.TILE_SIDE + 5);
+						navigationField.x += i * (Tile.TILE_SIDE + 5);
 					}
 					
 					else
 					{
 						drawTile("tile");
-						tile.y += 50 + (j * (tileChange.TILE_SIDE + 5));
+						tile.y += j * (Tile.TILE_SIDE + 5);
+						tile.x += i * (Tile.TILE_SIDE + 5);
 						battlefieldY.push (tile);
 						addChild(battlefieldY[j - 1]);
 					}
@@ -228,7 +222,7 @@ package
 		
 		private function onClick(m:MouseEvent):void 
 		{
-			// answer = Tile(m.target).clicked();
+			Tile(m.target).clicked();
 			
 			// return 
 			
