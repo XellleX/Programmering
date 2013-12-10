@@ -19,8 +19,9 @@ package
 		public const MISS:int = 2;
 		
 		public static var hits:int = 0;
+		public static var misses:int = 0;
 		
-		public var colors:ColorTransform = new ColorTransform();
+		public var tileColor:ColorTransform = new ColorTransform();
 		
 		public function Tile() 
 		{
@@ -30,21 +31,21 @@ package
 		}
 		
 		public function clicked():void 
-		{	
-			colors.color = 0x008000;
-			this.tileType = SHIP;
-			
+		{
 			if (!this.isClicked)
 			{
-				if (tileType == SHIP)
+				if (this.tileType == SHIP)
 				{
-					this.transform.colorTransform = colors;
+					tileColor.color = 0x008000;
+					this.transform.colorTransform = tileColor;
 					hits ++;
 				}
 				
-				else if (tileType == MISS)
+				else if (this.tileType == MISS)
 				{
-					
+					tileColor.color = 0x000000;
+					this.transform.colorTransform = tileColor;
+					misses ++;
 				}
 			}
 			

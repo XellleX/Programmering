@@ -7,8 +7,8 @@ package
 	 */
 	public class BattleShip 
 	{
-		public var shipStartX:int;
-		public var shipStartY:int;
+		public var shipPositionX:int;
+		public var shipPositionY:int;
 		
 		public var shipHorizontal:Boolean;
 		
@@ -22,15 +22,37 @@ package
 			shipHorizontal = Math.round(Math.random());
 			
 			if (shipHorizontal)
-			{
-				shipStartX = Math.random() * (10 - battleShipLength);
-				shipStartY = Math.random() * 9;
+			{	
+				for (var i:int = 0; i < battleShipLength; i++) 
+				{
+					if (i == 0)
+					{
+						shipPositionX = Math.random() * (10 - battleShipLength);
+						shipPositionY = Math.random() * 9;
+					}
+					
+					else
+					{
+						shipPositionX ++;
+					}
+				}
 			}
 			
 			else if (!shipHorizontal)
 			{
-				shipStartX = Math.random() * 9;
-				shipStartY = Math.random() * (10 - battleShipLength);
+				for (var i:int = 0; i < battleShipLength; i++) 
+				{
+					if (i == 0)
+					{
+						shipPositionX = Math.random() * 9;
+						shipPositionY = Math.random() * (10 - battleShipLength);
+					}
+					
+					else
+					{
+						shipPositionY ++;
+					}
+				}
 			}
 			
 		}

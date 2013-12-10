@@ -44,7 +44,9 @@ package
 		
 		private function resetboard():void 
 		{
-			scoreBoard.text = Tile.hits.toString();
+			Tile.misses = 0;
+			Tile.hits = 0;
+			scoreBoard.text = "Hits: " + Tile.hits.toString() + "\n \n \n" + "Misses: " + Tile.misses.toString();
 			
 			while (numberOfTiles > 0) 
 			{
@@ -93,7 +95,7 @@ package
 		private function onClick(m:MouseEvent):void 
 		{
 			Tile(m.target).clicked();
-			scoreBoard.text = Tile.hits.toString();
+			scoreBoard.text = "Hits: " + Tile.hits.toString() + "\n \n \n" + "Misses: " + Tile.misses.toString();
 		}
 		
 	}
