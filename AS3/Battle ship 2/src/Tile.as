@@ -15,8 +15,8 @@ package
 		public var isClicked:Boolean = false;
 		
 		public var tileType:int;
-		public const SHIP:int = 1;
-		public const MISS:int = 2;
+		public static const SHIP:int = 1;
+		public static const MISS:int = 2;
 		
 		public static var hits:int = 0;
 		public static var misses:int = 0;
@@ -28,12 +28,19 @@ package
 			this.graphics.beginFill(0x00FFFF);
 			this.graphics.drawRect(0, 0, TILE_SIDE, TILE_SIDE);
 			this.graphics.endFill();
+			
+			this.tileType = MISS;
+		}
+		
+		public function setType(type:int):void 
+		{
+			this.tileType = type;
 		}
 		
 		public function clicked():void 
-		{
+		{	
 			if (!this.isClicked)
-			{
+			{				
 				if (this.tileType == SHIP)
 				{
 					tileColor.color = 0x008000;

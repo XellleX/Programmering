@@ -4,6 +4,7 @@ package
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	import flash.text.TextField;
 	import flash.ui.Keyboard;
 	
@@ -21,6 +22,9 @@ package
 		private var battlefield:Vector.<Vector.<Tile>> = new Vector.<Vector.<Tile>>();
 		
 		private var scoreBoard:TextField = new TextField();
+		
+		private var shipPosition:Point;
+		private var shipHorizontal:Boolean;
 		
 		public function Main():void 
 		{
@@ -40,6 +44,35 @@ package
 			scoreBoard.y = 300;
 			scoreBoard.selectable = false;
 			addChild (scoreBoard);
+		}
+		
+		private function shipPlacement(battleShipLength:int):void 
+		{
+			shipHorizontal = Math.round(Math.random());
+			
+			var i:int;
+			
+			if (shipHorizontal)
+			{
+				shipPosition = new Point(Math.round(Math.random() * (10 - battleShipLength)), Math.round(Math.random() * 9)); 
+				trace(shipPosition.x, ",", shipPosition.y);
+				
+				for (i = 0; i < battleShipLength; i++) 
+				{
+					battlefield[shipPosition.x + i][shipPosition.y].setType(Tile.SHIP);
+				}
+			}
+			
+			else if (!shipHorizontal)
+			{
+				shipPosition = new Point(Math.round(Math.random() * 9), Math.round(Math.random() * (10 - battleShipLength)));
+				trace(shipPosition.x, ",", shipPosition.y);
+				
+				for (i = 0; i < battleShipLength; i++) 
+				{
+					battlefield[shipPosition.x][shipPosition.y + i].setType(Tile.SHIP);
+				}
+			}
 		}
 		
 		private function resetboard():void 
@@ -64,13 +97,15 @@ package
 				battlefieldLines = new Vector.<Tile>();
 				
 				for (var j:int = 0; j < 10; j++) 
-				{
+				{	
 					tile = new Tile();
 					
-					tile.y += 50 + (i * (Tile.TILE_SIDE + 5));
-					tile.x += 50 + (j * (Tile.TILE_SIDE + 5));
+					tile.y += 50 + (j * (Tile.TILE_SIDE + 5));
+					tile.x += 50 + (i * (Tile.TILE_SIDE + 5));
+					
 					battlefieldLines.push (tile);
 					addChild (battlefieldLines[j]);
+					
 					tile.addEventListener (MouseEvent.CLICK, onClick);
 					
 					numberOfTiles ++;
@@ -78,6 +113,11 @@ package
 				
 				battlefield.push (battlefieldLines);
 			}
+			
+			shipPlacement(4);
+			shipPlacement(2);
+			shipPlacement(5);
+			shipPlacement(3);
 		}
 		
 		private function onKeyDown(k:KeyboardEvent):void 
