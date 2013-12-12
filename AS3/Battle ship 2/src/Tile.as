@@ -32,11 +32,6 @@ package
 			this.tileType = MISS;
 		}
 		
-		public function setType(type:int):void 
-		{
-			this.tileType = type;
-		}
-		
 		public function clicked():void 
 		{	
 			if (!this.isClicked)

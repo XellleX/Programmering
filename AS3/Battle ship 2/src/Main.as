@@ -43,6 +43,8 @@ package
 			scoreBoard.x = 600;
 			scoreBoard.y = 300;
 			scoreBoard.selectable = false;
+			scoreBoard.background = true;
+			scoreBoard.backgroundColor = 0xC0C0C0;
 			addChild (scoreBoard);
 		}
 		
@@ -54,12 +56,12 @@ package
 			
 			if (shipHorizontal)
 			{
-				shipPosition = new Point(Math.round(Math.random() * (10 - battleShipLength)), Math.round(Math.random() * 9)); 
+				shipPosition = new Point(Math.round(Math.random() * (10 - battleShipLength)), Math.round(Math.random() * 9));
 				trace(shipPosition.x, ",", shipPosition.y);
 				
 				for (i = 0; i < battleShipLength; i++) 
 				{
-					battlefield[shipPosition.x + i][shipPosition.y].setType(Tile.SHIP);
+					battlefield[shipPosition.x + i][shipPosition.y].tileType = Tile.SHIP;
 				}
 			}
 			
@@ -70,7 +72,7 @@ package
 				
 				for (i = 0; i < battleShipLength; i++) 
 				{
-					battlefield[shipPosition.x][shipPosition.y + i].setType(Tile.SHIP);
+					battlefield[shipPosition.x][shipPosition.y + i].tileType = Tile.SHIP;
 				}
 			}
 		}
@@ -116,8 +118,8 @@ package
 			
 			shipPlacement(4);
 			shipPlacement(2);
-			shipPlacement(5);
-			shipPlacement(3);
+			shipPlacement(2);
+			shipPlacement(10);
 		}
 		
 		private function onKeyDown(k:KeyboardEvent):void 
