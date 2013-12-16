@@ -59,6 +59,7 @@ package
 		
 		public function reset():void 
 		{
+			this.graphics.clear();
 			tileColor.color = 0x00FFFF;
 			this.transform.colorTransform = tileColor;
 			this.isClicked = false;

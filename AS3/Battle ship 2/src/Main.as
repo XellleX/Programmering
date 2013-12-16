@@ -125,8 +125,8 @@ package
 			{
 				case Keyboard.SPACE: //So it resets when you press space.
 					
-					resetboard();
-					//tile.reset();
+					//resetboard();
+					tile.reset();
 					break;
 				default:
 			}
