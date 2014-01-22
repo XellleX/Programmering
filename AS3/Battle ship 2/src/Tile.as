@@ -57,13 +57,6 @@ package
 			this.isClicked = true; //tells the tile that it have been clicked so it doesnt do anything the next time you click it.
 		}
 		
-		public function reset():void 
-		{
-			this.graphics.clear();
-			tileColor.color = 0x00FFFF;
-			this.transform.colorTransform = tileColor;
-			this.isClicked = false;
-		}
 		
 	}
 

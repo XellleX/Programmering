@@ -43,12 +43,13 @@ package
 			scoreBoard.selectable = false;
 			scoreBoard.background = true;
 			scoreBoard.backgroundColor = 0xC0C0C0;
+			scoreBoard.border = true;
 			addChild (scoreBoard);
 		}
 		
 		private function shipPlacement(battleShipLength:int):void //Puts out ships. I have it because 
 		{
-			shipHorizontal = Math.round(Math.random()); 
+			shipHorizontal = Math.round(Math.random());
 			
 			var i:int;
 			
@@ -125,8 +126,7 @@ package
 			{
 				case Keyboard.SPACE: //So it resets when you press space.
 					
-					//resetboard();
-					tile.reset();
+					resetboard();
 					break;
 				default:
 			}

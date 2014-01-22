@@ -1,17 +1,31 @@
 body
 {
+	margin: 0;
+	padding: 0;
 	background-color: #5549f8;
 }
 
 header
 {
 	height: 100px;
-	margin: 0;
-	background-color: white;
+	background-color: black;
 }
 
 h1
 {
+	color: red;
 	text-align: center;
-	margin: -8px -8px -0px -8px;
+	margin: 0;
+}
+
+#Buttons
+{
+	background-color: white;
+	margin-top: 3%;
+}
+
+h2
+{
+	display: inline-block;
+	border: 1px solid #000;
 }

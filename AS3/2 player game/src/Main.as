@@ -35,8 +35,6 @@ package
 		private var collision2:Boolean = false; //Collision from the other way
 		private var collision3:Boolean = false; //So they can stand on top of each other
 		
-		private var debugField:TextField = new TextField;
-		
 		public function Main():void 
 		{
 			if (stage) init();
@@ -46,8 +44,8 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-			addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			this.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			// entry point
 			
@@ -55,12 +53,6 @@ package
 			player1.y = stage.stageHeight - player1.PLAYER_SIDELENGTH;
 			player2.x = 0;
 			player2.y = stage.stageHeight - player2.PLAYER_SIDELENGTH;
-			debugField.width = stage.stageWidth;
-			debugField.height = stage.stageHeight;
-			debugField.selectable = false;
-			debugField.background = true;
-			debugField.backgroundColor = 0xFFFF00;
-			addChild(debugField);
 			addChild(player1);
 			addChild(player2);
 		}
