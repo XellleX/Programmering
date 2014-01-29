@@ -1,0 +1,40 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background-color: #5549f8;
+}
+
+header
+{
+	height: 100px;
+	background-color: black;
+}
+
+h1
+{
+	color: red;
+	text-align: center;
+	margin: 0;
+}
+
+#Buttons
+{
+	background-color: white;
+	margin-top: 3%;
+}
+
+h2
+{
+	display: inline-block;
+	border: 1px solid #000;
+}
+
+#headform
+{
+	border: 1px solid #fff;
+	padding: 20px 0px;
+	background-color: #fff;
+	width: 50%;
+	border-radius: 50%;
+}
