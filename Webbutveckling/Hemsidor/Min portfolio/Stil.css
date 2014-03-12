@@ -1,5 +1,13 @@
+/* 
+Author: Elias Axelsson
+Contact: E-mail Elias.axelsson.te12d@gmail.com
+Description: Css for my portifolio
+*/ 
+
 body
 {
+	width: 100%;
+	height: 100%;
 	margin: 0;
 	padding: 0;
 	background-color: #5549f8;
@@ -11,35 +19,37 @@ header
 	border: 1px solid #000;
 }
 
-#style
+#header_style
 {
 	text-align: center;
 	
-	border: 1px solid #fff;
 	background-color: #fff;
-	padding: 2% 0;
+	padding: 1.5% 0;
 	border-radius: 100%;
 	-webkit-border-radius: 100%;
 	-moz-border-radius: 100%;
 	-ms-border-radius: 100%;
 	-o-border-radius: 100%;
-	width: 50%;
+	width: 45%;
+	margin: 15px auto;
 }
 
 #buttons
 {
-	margin-top: 3%;
+	margin-top: 2%;
 	padding: 0;
 	text-align: center;
+	border: 0 solid #fff;
+	background-color: #fff;
 }
 
 #buttons > li
 {
 	display: inline-block;
 	border: 3px solid #000;
-	margin: 0;
-	width: 24.2%;
-	height: 100px;
+	margin: -1.5px;
+	width: 24.55%;
+	height: 85px;
 	font-size: 30pt;
 	text-shadow: 3px 3px #909090;
 }
@@ -48,11 +58,54 @@ header
 {
 	display: block;
 	height: 100%;
-	background-color: #fff;
+	text-decoration: none;
+	color: #000;
 }
 
 #buttons > li > a:hover
 {
-	background-color: #f00;
+	color: aqua;
+	-webkit-transition: color 1s;
+	-moz-transition: color 1s;
+	-ms-transition: color 1s;
+	-o-transition: color 1s;
+	transition: color 1s;
+}
+
+#buttons > li:hover
+{
+	background-color: #5b5454;
+	-webkit-transition: background-color 1s;
+	-moz-transition: background-color 1s;
+	-ms-transition: background-color 1s;
+	-o-transition: background-color 1s;
+	transition: background-color 1s;
+}
+
+#picture
+{
+	width: 20%;
+	height: 20%;
+	margin-left: 70%;
+}
+
+#contenttext > p
+{
+	border:1px solid #000;
+	display: inline-block;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+#contenttext
+{
+	
+}
+
+footer
+{
+	color: #fff;
+	border: 1px solid #413535;
+	background-color: #413535;
+	margin-top: 1%;
 }
 
