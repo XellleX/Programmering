@@ -1,0 +1,33 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+public class Main 
+{
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		System.out.println("How old are you?");
+		int age;
+		age=in.nextInt();
+		int randomNumber;
+		char welcome;
+		welcome = hello();
+		
+		if(age >= 18)
+		{
+			randomNumber = (int) (Math.random() * 10);
+			System.out.println(welcome + randomNumber);
+		}
+		
+		else
+		{
+			System.out.println("Bich, get out!");
+		}
+	}
+	
+	public static char hello()
+	{
+		System.out.println("Welcome! ");
+	}
+	
+}

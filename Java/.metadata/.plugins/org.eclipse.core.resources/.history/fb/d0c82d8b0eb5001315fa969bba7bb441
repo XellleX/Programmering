@@ -1,0 +1,24 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+public class Main 
+{
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		System.out.println("How old are you?");
+		int age;
+		age=in.nextInt();
+		int randomNumber = (int) Math.random();
+		
+		if(age >= 18)
+		{
+			System.out.println("Welcome! " + randomNumber);
+		}
+		
+		else
+		{
+			System.out.println("Bich, get out!");
+		}
+	}
+}

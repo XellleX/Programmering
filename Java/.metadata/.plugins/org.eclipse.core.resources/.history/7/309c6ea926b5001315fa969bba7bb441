@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main 
+{
+	public static void main(String[] args) 
+	{
+		Scanner scan = new Scanner(System.in);
+		
+		String[] choices = {"Sten", "sax", "påse"};
+		
+		System.out.println("You play to 3");
+		
+		String playerChoice = scan.nextLine();
+		
+		System.out.println(playerChoice);
+		System.out.println(choices[0]);
+		
+		if(playerChoice == choices[0])
+		{
+			System.out.println("Wow");
+		}
+		
+		else
+		{
+			System.out.println("Hej");
+		}
+		
+	}
+
+}

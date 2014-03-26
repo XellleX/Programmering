@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main 
+{
+	public static void main(String[] args) 
+	{
+		String[] choices = {"sten", "sax", "påse"};
+		
+		System.out.println("You play to 3");
+		
+	}
+
+}
