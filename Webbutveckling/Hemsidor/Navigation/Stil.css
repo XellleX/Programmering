@@ -1,0 +1,28 @@
+* 
+{
+	border: 1px solid #000;
+}
+
+nav > ul
+{
+	list-style: none;
+	width: 600px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	margin: auto;
+}
+
+li
+{
+	margin: 0;
+	width: 120px;
+	display: inline-block;
+}
+
+a
+{
+	background: url();
+	display: block;
+	width: 100%;
+}

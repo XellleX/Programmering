@@ -13,16 +13,16 @@ package
 		private var narrator:TextField = new TextField();
 		
 		private const POJKE_NAME:String = "Swagster Man";
-		private var pojkeHp:int = 80;
-		private const POJKE_ATK:int = 17;
+		private var pojkeHp:int = 100;
+		private const POJKE_ATK:int = 13;
 		private const POJKE_DEF:int = 7;
 		private var pojkeDmg:int;
 		private var pojkeCurrentDef:int;
 		
 		private const FLICKA_NAME:String = "Bella";
-		private var flickaHp:int = 80;
-		private const FLICKA_ATK:int = 20;
-		private const FLICKA_DEF:int = 6;
+		private var flickaHp:int = 100;
+		private const FLICKA_ATK:int = 15;
+		private const FLICKA_DEF:int = 4;
 		private var flickaDmg:int;
 		private var flickaCurrentDef:int;
 		
@@ -45,26 +45,24 @@ package
 			while(flickaHp > 0 && pojkeHp > 0) 
 			{
 				round++;
-				
-				pojkeDmg = POJKE_ATK * Math.random() - flickaCurrentDef;
-				pojkeCurrentDef = POJKE_DEF * Math.random();
-				pojkeHp -= flickaDmg;
-				
-				flickaDmg = FLICKA_ATK * Math.random() - pojkeCurrentDef;
 				flickaCurrentDef = FLICKA_DEF * Math.random();
-				flickaHp -= pojkeDmg;
+				pojkeCurrentDef = POJKE_DEF * Math.random();
+				
+				pojkeDmg = (POJKE_ATK * Math.random()) + (POJKE_ATK / 2) - flickaCurrentDef;
+				flickaDmg = (FLICKA_ATK * Math.random()) + (FLICKA_ATK / 2) - pojkeCurrentDef;
 				
 				if (pojkeDmg < 0)
 				{
 					pojkeDmg = 0;
-					flickaHp += pojkeDmg;
 				}
 				
 				if (flickaDmg < 0)
 				{
 					flickaDmg = 0;
-					pojkeHp += flickaDmg;
 				}
+				
+				pojkeHp -= flickaDmg;
+				flickaHp -= pojkeDmg;
 				
 				narrator.appendText ("Round " + round.toString() + "\n");
 				narrator.appendText (FLICKA_NAME + " damaged " + POJKE_NAME + " " + flickaDmg + ", " + POJKE_NAME + " got " + pojkeHp + " Hp left \n");
@@ -84,7 +82,7 @@ package
 				narrator.appendText (POJKE_NAME + " WON");
 			}
 			
-			if (pojkeHp <= 0)
+			else if (pojkeHp <= 0)
 			{
 				narrator.appendText (FLICKA_NAME + " WON");
 			}

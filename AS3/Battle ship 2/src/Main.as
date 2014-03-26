@@ -15,16 +15,14 @@ package
 	public class Main extends Sprite 
 	{
 		private var tile:Tile;
-		
 		private var numberOfTiles:int = 0;
-		
 		private var battlefieldLines:Vector.<Tile>;
 		private var battlefield:Vector.<Vector.<Tile>> = new Vector.<Vector.<Tile>>();
 		
 		private var scoreBoard:TextField = new TextField();
 		
 		private var shipPosition:Point;
-		private var shipHorizontal:Boolean;
+		private var shipHorizontal:Boolean; //will tell if the ship should be horizontal or not (vertical).
 		
 		public function Main():void 
 		{
@@ -36,7 +34,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			resetboard();
+			resetboard(); //To put out the battlefield at start
 			
 			stage.addEventListener (KeyboardEvent.KEY_DOWN, onKeyDown);
 			
@@ -45,30 +43,30 @@ package
 			scoreBoard.selectable = false;
 			scoreBoard.background = true;
 			scoreBoard.backgroundColor = 0xC0C0C0;
+			scoreBoard.border = true;
 			addChild (scoreBoard);
 		}
 		
-		private function shipPlacement(battleShipLength:int):void 
+		private function shipPlacement(battleShipLength:int):void //Puts out ships. I have it because 
 		{
 			shipHorizontal = Math.round(Math.random());
 			
 			var i:int;
 			
-			if (shipHorizontal)
+			if (shipHorizontal) //So it know if it supposed to be horizontal or vertical.
 			{
-				shipPosition = new Point(Math.round(Math.random() * (10 - battleShipLength)), Math.round(Math.random() * 9));
-				trace(shipPosition.x, ",", shipPosition.y);
+				shipPosition = new Point(Math.round(Math.random() * (10 - battleShipLength)), Math.round(Math.random() * 9)); 
+				//Here it makes the startposition of the ship, and the X position is * 10 - battleshiplength so it can't be outside the battlefield
 				
 				for (i = 0; i < battleShipLength; i++) 
 				{
-					battlefield[shipPosition.x + i][shipPosition.y].tileType = Tile.SHIP;
+					battlefield[shipPosition.x + i][shipPosition.y].tileType = Tile.SHIP; //tells the tile that it is a ship
 				}
 			}
 			
 			else if (!shipHorizontal)
 			{
 				shipPosition = new Point(Math.round(Math.random() * 9), Math.round(Math.random() * (10 - battleShipLength)));
-				trace(shipPosition.x, ",", shipPosition.y);
 				
 				for (i = 0; i < battleShipLength; i++) 
 				{
@@ -77,13 +75,14 @@ package
 			}
 		}
 		
-		private function resetboard():void 
+		private function resetboard():void //This function resets everything and puts out the battlefield. I have this so i dont have to write the code more than once.
 		{
 			Tile.misses = 0;
 			Tile.hits = 0;
-			scoreBoard.text = "Hits: " + Tile.hits.toString() + "\n \n \n" + "Misses: " + Tile.misses.toString();
+			Tile.shotsFired = 0;
+			scoreBoard.text = "Shots Fired: " + Tile.shotsFired.toString() + "\n\nHits: " + Tile.hits.toString() + "\n\nMisses: " + Tile.misses.toString();
 			
-			while (numberOfTiles > 0) 
+			while (numberOfTiles > 0) //removes all the tiles so it can reset
 			{
 				numberOfTiles --;
 				removeChild(battlefield[0].shift());
@@ -94,16 +93,16 @@ package
 				}
 			}
 			
-			for (var i:int = 0; i < 10 ; i++) 
-			{
-				battlefieldLines = new Vector.<Tile>();
+			for (var i:int = 0; i < 10; i++) //Puts out the battlefield.
+			{	
+				battlefieldLines = new Vector.<Tile>(); //will contain lines of tiles (10 in each)
 				
-				for (var j:int = 0; j < 10; j++) 
+				for (var j:int = 0; j < 10; j++) //makes 10 tiles for one line
 				{	
 					tile = new Tile();
 					
-					tile.y += 50 + (j * (Tile.TILE_SIDE + 5));
-					tile.x += 50 + (i * (Tile.TILE_SIDE + 5));
+					tile.y += 50 + j * (Tile.TILE_SIDE + 5); //So they are in line vertical
+					tile.x += 50 + i * (Tile.TILE_SIDE + 5); //So they are in line horizontal
 					
 					battlefieldLines.push (tile);
 					addChild (battlefieldLines[j]);
@@ -113,20 +112,19 @@ package
 					numberOfTiles ++;
 				}
 				
-				battlefield.push (battlefieldLines);
+				battlefield.push (battlefieldLines); //contains all the lines (the whole battlefield)
 			}
 			
-			shipPlacement(4);
+			shipPlacement(4); //Puts out a ship that has the length you tell in the parameter.
 			shipPlacement(2);
-			shipPlacement(2);
-			shipPlacement(10);
+			shipPlacement(3);
 		}
 		
-		private function onKeyDown(k:KeyboardEvent):void 
+		private function onKeyDown(k:KeyboardEvent):void //So you can press a key
 		{
 			switch (k.keyCode) 
 			{
-				case Keyboard.SPACE:
+				case Keyboard.SPACE: //So it resets when you press space.
 					
 					resetboard();
 					break;
@@ -134,10 +132,10 @@ package
 			}
 		}
 		
-		private function onClick(m:MouseEvent):void 
+		private function onClick(m:MouseEvent):void //So i can click on tiles
 		{
-			Tile(m.target).clicked();
-			scoreBoard.text = "Hits: " + Tile.hits.toString() + "\n \n \n" + "Misses: " + Tile.misses.toString();
+			Tile(m.target).clicked(); //So the tile becomes a ship or a miss
+			scoreBoard.text = "Shots Fired: " + Tile.shotsFired.toString() + "\n\nHits: " + Tile.hits.toString() + "\n \nMisses: " + Tile.misses.toString();
 		}
 		
 	}
