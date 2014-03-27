@@ -116,24 +116,25 @@ header
 	margin: 0 3%;
 }
 
-#facebook_logo
+#logos > a > img
 {
-	width: 3%;
-	border: 3px solid #000;
+	margin-left: 15px;
 	vertical-align: middle;
+	width: 20%;
 }
 
-#wordpress_logo
+#logos
 {
-	width: 5%;
-	vertical
+	width: 15%;
+	float: right;
+	margin-right: 10%;
+	margin-top: 0.5%;
 }
 
 footer
 {
 	color: #fff;
-	border: 1px solid #413535;
-	background-color: #413535;
+	background-color: #272222;
 	margin-top: 1%;
 }
 
@@ -141,6 +142,5 @@ footer > p
 {
 	font-size: 13pt;
 	margin-left: 2%;
-	border: 3px solid #000;
 	display: inline-block;
 }
