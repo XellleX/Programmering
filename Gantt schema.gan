@@ -35,18 +35,18 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Gantt schema" color="#8cb6ce" meeting="false" start="2014-04-01" duration="1" complete="60" expand="true"/>
+        <task id="0" name="Gantt schema" color="#8cb6ce" meeting="false" start="2014-04-01" duration="1" complete="100" expand="true"/>
         <task id="1" name="Marknadsundersökning" color="#8cb6ce" meeting="false" start="2014-04-03" duration="1" complete="0" expand="true"/>
         <task id="13" name="Idé fasen" color="#8cb6ce" meeting="false" start="2014-04-02" duration="3" complete="0" expand="true">
             <depend id="57" type="2" difference="0" hardness="Rubber"/>
         </task>
-        <task id="57" name="Form, material" color="#8cb6ce" meeting="false" start="2014-04-05" duration="4" complete="0" expand="true">
+        <task id="57" name="Form, material, hållfasthet, budget" color="#8cb6ce" meeting="false" start="2014-04-05" duration="9" complete="0" expand="true">
             <depend id="46" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="46" name="Skiss" color="#8cb6ce" meeting="false" start="2014-04-09" duration="7" complete="0" expand="true">
-            <depend id="52" type="2" difference="1" hardness="Strong"/>
+        <task id="46" name="Skiss" color="#8cb6ce" meeting="false" start="2014-04-14" duration="7" complete="0" expand="true">
+            <depend id="52" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="52" name="3D modell" color="#8cb6ce" meeting="false" start="2014-04-17" duration="12" complete="0" expand="true"/>
+        <task id="52" name="3D modell" color="#8cb6ce" meeting="false" start="2014-04-21" duration="12" complete="0" expand="true"/>
         <task id="14" name="Företags logo och namn" color="#8cb6ce" meeting="false" start="2014-04-07" duration="2" complete="0" expand="true"/>
         <task id="11" name="Presentation" color="#8cb6ce" meeting="false" start="2014-05-03" duration="10" complete="0" expand="true"/>
         <task id="3" name="Rapport" color="#8cb6ce" meeting="false" start="2014-04-01" duration="42" complete="0" expand="true"/>
