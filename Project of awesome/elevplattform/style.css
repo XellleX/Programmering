@@ -1,0 +1,281 @@
+/* Till alla sidor */
+html, body
+{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+header
+{
+	border: 1px solid black;
+	background-color: #b4b0b0;
+	text-align: center;
+}
+
+#register
+{
+	margin-left: auto;
+}
+
+#navigation
+{
+	border: 1px solid black;
+	font-size: 20pt;
+	background-color: #5dc8cd;
+	margin: 2% auto 3% auto;
+}
+
+.buttons
+{
+	list-style: none;
+	display: inline-block;
+	border: 1px solid black;
+	background-color: white;
+	width: 30%;
+	padding: 1%;
+	margin-left: 10%;
+	text-align: center;
+	color: black;
+	text-shadow: 2px 2px #af9a9a;
+}
+
+.buttons:hover
+{
+	background-color: grey;
+}
+
+.buttons:active
+{
+	text-shadow: 0 0;
+}
+
+#content
+{
+	background-color: white;
+	border: 1px solid black;
+	margin: auto;
+	width: 80%;
+}
+
+#style
+{
+	background-color: #3835c5;
+	margin: 0;
+	min-height: 100%;
+}
+
+footer
+{
+	background-color: #5dd55d;
+	position: relative;
+	clear:both;
+}
+
+footer > p
+{
+	margin: 0;
+	padding: 1%;
+}
+
+
+/* index */
+#container
+{
+	padding: 1%;
+}
+
+#news_feed
+{
+	background-color: rgba(0, 0, 0, 0.3);
+	width: 60%;
+	display: inline-block;
+	margin-left: 20%;
+	padding-left: 1%;
+}
+
+.news_feed_summary > a
+{
+	text-decoration: none;
+}
+
+.news_feed_summary
+{
+	margin-bottom: 1%;
+	border: solid 1px #000;
+	width: 25%;
+	background-color: #7a7a7a;
+}
+
+.news_feed_summary:hover
+{
+	background-color: #a3a2a2;
+}
+
+#courses_list
+{
+	display: inline-block;
+	border: 2px solid black;
+	margin: 0 0 0 2%;
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	background-color: #5dc8cd;
+}
+
+#courses_list > a
+{
+	color: black;
+	text-decoration: none;
+	list-style: none;
+}
+
+#courses_list > a > li
+{
+	margin: 5% 0;
+	list-style: none;
+}
+
+#courses_list > a > li:hover
+{
+	background-color: grey;
+}
+
+
+/* view_summaries */
+.posts, .postheader
+{
+	border: solid 1px black;
+	background-color: #a3a2a2;
+	width: 50%;
+	text-align: center;
+	margin: 2% auto 1% auto;
+}
+
+.postheader
+{
+	border: solid 2px black;
+}
+
+.posts > a
+{
+	text-decoration: none;
+}
+
+.posts:hover
+{
+	background-color: #7a7a7a;
+}
+
+.title
+{
+	font-weight: bold;
+	font-size: 14pt;
+	font-family: Century Gothic;
+	color: black;
+	padding-top: 2%;
+}
+
+.userAndDate
+{
+	color: black;
+	padding-bottom: 2%;
+}
+
+.content
+{
+	border: solid 1px black;
+	background-color: #a3a2a2;
+	width: 70%;
+	padding: 1% 0;
+	margin: auto;
+}
+
+.page_link
+{
+	text-decoration: none;
+	color: blue;
+	text-align: center;
+	display: inline-block;
+	width: 3%;
+}
+
+.page_link:hover
+{
+	text-decoration: underline;
+}
+
+#page_links_style
+{
+	text-align: center;
+}
+
+.course_link
+{
+	color: black;
+}
+
+#commentField
+{
+	width: 45%;
+	max-width: 70%;
+}
+
+.comment_form_content
+{
+	margin-left: 35%;
+}
+
+#comment_form
+{
+	border-top: 1px solid #000;
+	margin-top: 1%;
+}
+
+.comment
+{
+	width: 40%;
+	border: 2px solid rgba(0, 0, 0, 0.3);
+	margin: 0 0 2% 2%;
+}
+
+.comment_userAndDate
+{
+	font-weight: bold;
+	color: blue;
+	margin-bottom: 2%;
+}
+
+
+/* add_summary */
+#textfield
+{
+	width: 35%;
+	max-width: 90%;
+	height: 100px;
+}
+
+#titlefield
+{
+	width: 25%;
+	margin-top: 3%;
+}
+
+.form
+{
+	margin-left: 1%;
+}
+
+.form_error
+{
+	color: red;
+	font-weight: bold;
+}
+
+
+/*register.php*/
+#test.capitalize
+{
+	text-transform: capitalize;
+}

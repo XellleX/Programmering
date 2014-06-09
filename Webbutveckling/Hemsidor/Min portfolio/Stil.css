@@ -171,15 +171,6 @@ footer > p
 }
 
 
-/*Om mig sidan*/
-#picture
-{
-	width: 29%;
-	float: right;
-	margin-right: 4%;
-}
-
-
 /*Index sidan*/
 #pictureOfMe
 {
@@ -191,4 +182,21 @@ footer > p
 #pictureOfMe:hover
 {
 	opacity: 0.95;
+}
+
+
+/*Om mig sidan*/
+#picture
+{
+	width: 29%;
+	float: right;
+	margin-right: 4%;
+}
+
+
+/*Projekt sidan*/
+#battleship_picture
+{
+	width: 70%;
+	padding: 1%;
 }
