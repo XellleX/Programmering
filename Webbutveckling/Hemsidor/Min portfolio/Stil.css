@@ -4,6 +4,12 @@ Contact: E-mail Elias.axelsson.te12d@gmail.com
 Description: Css for my portifolio
 */ 
 
+/*Till alla sidor*/
+html
+{
+	width: 100%;
+	height: 60%;
+}
 body
 {
 	width: 100%;
@@ -31,7 +37,12 @@ header
 	-ms-border-radius: 100%;
 	-o-border-radius: 100%;
 	width: 45%;
-	margin: 15px auto;
+	margin: 0.938em auto;
+}
+
+#header_style > a > img
+{
+	width: 50%;
 }
 
 #buttons
@@ -82,65 +93,110 @@ header
 	transition: background-color 1s;
 }
 
-#picture
+#buttons > li > a:active
 {
-	width: 20%;
-	height: 20%;
-	vertical-align: top;
-	display: inline-block;
-	margin-left: 5%;
+	text-shadow: 0 0;
 }
 
-#contenttext > p, #contenttext > h3
+.contenttext > p, .contenttext > h3
 {
 	border: 0px solid #000;
-	background-color: rgba(255, 255, 255, 0.4);
 	padding: 1%;
 }
 
-#contenttext > p
+.contenttext > p
 {
 	margin: 0;
 	font-size: 13pt;
 }
 
-#contenttext > h3
+.contenttext > h3
 {
 	margin-bottom: 0;
+	font-size: 16pt;
 }
 
-#contenttext
+.contenttext
 {
 	width: 60%;
 	display: inline-block;
-	margin: 0 3%;
+	margin: 1% 3%;
+	background-color: rgba(255, 255, 255, 0.4);
+	border: 1px solid #000;
 }
 
-#facebook_logo
+.container
 {
-	width: 3%;
-	border: 3px solid #000;
+	padding-bottom: 55px;
+	min-height: 100%;
+}
+
+.clear
+{
+	clear: both;
+}
+
+#logos > a > img
+{
+	margin-left: 15px;
 	vertical-align: middle;
+	width: 20%;
 }
 
-#wordpress_logo
+#logos
 {
-	width: 5%;
-	vertical
+	width: 15%;
+	float: right;
+	margin-right: 10%;
+	margin-top: 0.5%;
 }
 
 footer
 {
 	color: #fff;
-	border: 1px solid #413535;
-	background-color: #413535;
-	margin-top: 1%;
+	background-color: #272222;
+	margin-top: 3%;
+	height: 55px;
+	position: relative;
+	clear:both;
 }
+
 
 footer > p
 {
+	max-width: 600px;
 	font-size: 13pt;
 	margin-left: 2%;
-	border: 3px solid #000;
 	display: inline-block;
+}
+
+
+/*Index sidan*/
+#pictureOfMe
+{
+	width: 20%;
+	float: right;
+	margin-right: 5%;
+}
+
+#pictureOfMe:hover
+{
+	opacity: 0.95;
+}
+
+
+/*Om mig sidan*/
+#picture
+{
+	width: 29%;
+	float: right;
+	margin-right: 4%;
+}
+
+
+/*Projekt sidan*/
+#battleship_picture
+{
+	width: 70%;
+	padding: 1%;
 }

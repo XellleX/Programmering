@@ -16,7 +16,23 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
+<<<<<<< HEAD
+      <value>'2014-03-09'</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::air</name>
+      <value>false</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::mobile</name>
+      <value>false</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::desktop</name>
+      <value>false</value>
+=======
       <value>'2013-12-21'</value>
+>>>>>>> 8f8dde1799691166d82dd9488432034cdfabfae6
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">

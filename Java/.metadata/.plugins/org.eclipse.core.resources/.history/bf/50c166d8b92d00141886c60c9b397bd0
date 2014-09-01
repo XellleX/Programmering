@@ -1,0 +1,11 @@
+
+public class Intro {
+
+	public static void main(String[] args) 
+	{
+		int tal1 = 10, tal2;
+		
+		System.out.println(tal1 + " + ");
+	}
+
+}
