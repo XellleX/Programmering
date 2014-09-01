@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Intro {
+
+	public static void main(String[] args) 
+	{
+		//Uppgift 1
+		Scanner scan = new Scanner(System.in);
+		
+		int numberOfDollars = scan.nextInt();
+		
+		for(int i = 1; i <= numberOfDollars; i++)
+		{
+			System.out.print("$");
+			if(i == numberOfDollars)
+			{
+				for(i= 1; i <= numberOfDollars; i++)
+				System.out.println("$");
+			}
+		}
+	}
+
+}

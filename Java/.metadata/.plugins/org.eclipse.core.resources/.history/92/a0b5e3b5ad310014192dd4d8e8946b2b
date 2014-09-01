@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Intro {
+
+	public static void main(String[] args) 
+	{
+		int tal1, tal2;
+		Scanner in = new Scanner(System.in);
+		
+		System.out.print("Ange tal 1: ");
+		tal1 = in.nextInt();
+		System.out.print("Ange tal 2: ");
+		tal2 = in.nextInt();
+		System.out.println("Summa = " + (tal1+tal2));
+	}
+
+}
