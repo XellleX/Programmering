@@ -1,0 +1,21 @@
+import javax.swing.JFrame;
+
+
+public class Main extends JFrame
+{
+	private Gubbe man = new Gubbe();
+	
+	public Main()
+	{
+		super("hej");
+		setVisible(true);
+		setBounds(150, 150, 400, 300);
+	}
+	
+	public static void main(String[] args) 
+	{
+		
+
+	}
+
+}

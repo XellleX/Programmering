@@ -1,0 +1,9 @@
+package geometri;
+
+public class Rektangel 
+{
+	public Rektangel()
+	{
+		
+	}
+}
