@@ -1,0 +1,8 @@
+1421138880925	Rename local variable 'nplayers'
+1421139154389	Rename local variable 'np'
+1421162972193	Rename field 'calculate'
+1421163004388	Rename field 'help'
+1421236332577	Rename field 'numberOfRounds'
+1421243375259	Rename field 'totAndRoundScore'
+1421317192485	Rename method 'updateLabels'
+1421328023381	Rename field 'c'

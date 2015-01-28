@@ -1,8 +1,11 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 public class Flaggor extends JFrame
@@ -10,6 +13,9 @@ public class Flaggor extends JFrame
 	
 	private Color farg1, farg2;
 	String svar = JOptionPane.showInputDialog("Vilken flagga vill du se? s/n/f");
+	JPanel test = new JPanel();
+	JLabel hej = new JLabel("hej");
+	JPanel t = new JPanel();
 	
 	public Flaggor()
 	{
@@ -21,7 +27,7 @@ public class Flaggor extends JFrame
 	
 	public void paint(Graphics g)
 	{
-		super.paint(g);
+		//test.paint(g);
 		
 		switch(svar)
 		{

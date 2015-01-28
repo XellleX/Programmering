@@ -1,0 +1,28 @@
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+public class Main 
+{
+	private static JPanel startWindow = new JPanel();
+	private JTextField player1 = new JTextField();
+	private JTextField player2 = new JTextField();
+	private JTextField player3 = new JTextField();
+	private JTextField player4 = new JTextField();
+	
+	public Main()
+	{
+		startWindow.add(player1);
+		startWindow.add(player2);
+		startWindow.add(player3);
+		startWindow.add(player4);
+	}
+	
+	public static void main(String[] args) 
+	{	
+		JOptionPane.showMessageDialog(startWindow, "hi");
+		new UI();
+	}
+
+}

@@ -1,0 +1,37 @@
+package Samlingar;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Samlingar
+{
+	String blä = System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "Elias bokhandel.docx";
+	Stack<String> ord = new Stack<>();
+	
+	public Samlingar()
+	{
+		try 
+		{
+			Scanner scan = new Scanner(new File(blä));
+			while(scan.hasNext())
+			{
+				ord.add(scan.next());
+			}
+			Collections.sort(ord);
+			System.out.println(ord);
+		} 
+		catch (Exception e) 
+		{
+			System.out.println("Fu");
+		}
+		
+	}
+	public static void main(String[] args) 
+	{
+		
+	}
+
+}

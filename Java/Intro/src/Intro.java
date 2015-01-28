@@ -1,55 +1,25 @@
+import java.awt.BorderLayout;
 import java.util.Scanner;
 
-public class Intro {
+import javax.swing.Box;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-	public static void main(String[] args) 
+public class Intro extends JFrame
+{
+	public String name;
+	
+	public Intro()
 	{
-		//Uppgift 1
-		/*
-		Scanner scan = new Scanner(System.in);
-		
-		int numOfDollars = scan.nextInt();
-		
-		for(int i = 1; i <= numOfDollars; i++)
-		{
-			System.out.print("$");
-			if(i % numOfDollars == 0)
-			{
-				for(i = 2; i <= numOfDollars; i++)
-				{
-					System.out.println("");
-					for(int k = 1; k <= numOfDollars; k++)
-					System.out.print("$");
-				}
-				
-			}
-		}
-		*/
-		
-		//Uppgift 2
-		/*
-		Scanner input = new Scanner(System.in);
-		
-		int tal = input.nextInt();
-		
-		for(int i = 0; 5 > i; i++)
-		{
-			
-		}
-		
-		System.out.print(tal);
-	*/
-		Scanner scan = new Scanner(System.in);
-		String s = scan.nextLine();
-
-		try{
-		    Integer.parseInt(s);
-		}
-		catch(NumberFormatException ex){
-		    System.out.println("Its not a valid Integer");
-		}
 		
 	}
-		
-
+	
+	public Intro(String n)
+	{
+		name = n;
+		//System.out.println(name);
+	}
 }
