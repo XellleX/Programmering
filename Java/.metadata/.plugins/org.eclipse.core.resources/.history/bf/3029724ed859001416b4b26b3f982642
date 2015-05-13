@@ -1,0 +1,40 @@
+import java.awt.BorderLayout;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+public class Main extends JFrame
+{
+	private Gubbe man = new Gubbe();
+	ArrayList<JButton> buttons = new ArrayList<>();
+	private JPanel panel = new JPanel();
+	
+	public Main()
+	{
+		super("hej");
+		setVisible(true);
+		setBounds(150, 150, 700, 500);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		add(man);
+		add(BorderLayout.NORTH, panel);
+		fillDefConstructor();
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Main();
+	}
+	
+	private void fillDefConstructor()
+	{
+		buttons.add(new JButton("hej"));
+		buttons.add(new JButton("tryck"));
+		buttons.add(new JButton("tryck"));
+		buttons.add(new JButton("tryck"));
+		panel.add(buttons.get(0));
+	}
+
+}

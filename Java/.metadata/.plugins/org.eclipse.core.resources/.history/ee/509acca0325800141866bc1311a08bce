@@ -1,0 +1,22 @@
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+
+
+public class Flaggor extends JFrame
+{
+	public Flaggor()
+	{
+		super("Hej");
+		setBounds(100, 100, 500, 400);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	
+	public void Paint(Graphics g)
+	{
+		g.setColor(Color.YELLOW);
+		g.drawRect(50, 50, 300, 350);
+	}
+}

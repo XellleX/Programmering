@@ -5,6 +5,7 @@ public class Intro {
 	public static void main(String[] args) 
 	{
 		//Uppgift 1
+		/*
 		Scanner scan = new Scanner(System.in);
 		
 		int numOfDollars = scan.nextInt();
@@ -23,6 +24,32 @@ public class Intro {
 				
 			}
 		}
+		*/
+		
+		//Uppgift 2
+		/*
+		Scanner input = new Scanner(System.in);
+		
+		int tal = input.nextInt();
+		
+		for(int i = 0; 5 > i; i++)
+		{
+			
+		}
+		
+		System.out.print(tal);
+	*/
+		Scanner scan = new Scanner(System.in);
+		String s = scan.nextLine();
+
+		try{
+		    Integer.parseInt(s);
+		}
+		catch(NumberFormatException ex){
+		    System.out.println("Its not a valid Integer");
+		}
+		
 	}
+		
 
 }

@@ -1,0 +1,81 @@
+package Arrayer;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class AdditionQuiz
+{
+	public static int tal1, tal2, summa;
+	public static boolean run = true;
+	
+	public static void main(String[] args)
+	{
+		while(run)
+		{
+			Scanner inSvar = new Scanner(System.in);
+			
+			ArrayList<Integer> svar = new ArrayList<>();
+			
+			nyFråga();
+			
+			String fråga = "Vad är " + tal1 + " + " + tal2 + "?";
+			
+			System.out.println("För att avsluta skriv: Exit");
+			System.out.println(fråga);
+			
+			if(inSvar.hasNext("Exit") || inSvar.hasNext("exit"))
+			{
+				run = false;
+				break;
+			}
+			
+			else if(inSvar.hasNext())
+			{
+				System.out.println("OMG");
+				break;
+			}
+			else
+			{
+				int s = inSvar.nextInt();
+				
+				while(s != summa)
+				{
+					if(svar.size() == 0)
+					{
+						System.out.println("Fel. Försök igen. " + fråga);
+						svar.add(s);
+					}
+					
+					else
+					{
+						if(svar.contains(s))
+						{
+							System.out.println("Du har redan angett det svaret en gång. \n" + fråga);
+						}
+						else
+						{
+							System.out.println("Fel. Försök igen. " + fråga);
+							svar.add(s);
+						}
+					}
+					s = inSvar.nextInt();
+				}
+				
+				System.out.println("Det var rätt!\nOm du vill avsluta skriv Exit, annars skriv vad som helst.");
+				if(inSvar.hasNext("Exit") || inSvar.hasNext("exit"))
+				{
+					run = false;
+				}
+			}
+		}
+	}
+
+	public static int nyFråga()
+	{
+		tal1 = (int) Math.round(20 * Math.random());
+		tal2 = (int) Math.round(20 * Math.random());
+		
+		summa = tal1 + tal2;
+		return summa;
+	}
+}

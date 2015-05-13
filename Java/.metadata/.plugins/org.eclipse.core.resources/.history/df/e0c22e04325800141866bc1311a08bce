@@ -1,0 +1,10 @@
+import javax.swing.JFrame;
+
+
+public class Flaggor extends JFrame
+{
+	public Flaggor()
+	{
+		
+	}
+}
