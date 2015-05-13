@@ -1,0 +1,20 @@
+package Konto;
+
+import Synkronisering.Syncad;
+
+public class Deposit 
+{
+	Integer kontoPengar = 0;
+	Thread deposit = new Thread();
+	Thread withdraw = new Thread();
+	
+	public Deposit()
+	{
+		
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Deposit();
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Animering.Draw&apos; to &apos;Ball&apos;&#x0D;&#x0A;- Original project: &apos;Alla små uppgifter&apos;&#x0D;&#x0A;- Original element: &apos;Animering.Draw&apos;&#x0D;&#x0A;- Renamed element: &apos;Animering.Ball&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Draw&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;Animering{Draw.java[Draw" matchStrategy="1" name="Ball" qualified="false" references="true" similarDeclarations="false" stamp="1427399899299" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,40 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+public class Player 
+{
+	Image spriteMap;
+	
+	int width;
+	int height;
+	int posX2;
+	int posY2;
+	int posX1 = 400;
+	int posY1 = 415;
+	int imageNumX = 0;
+	int imageNumY = 0;
+	
+	AnimPanel pan;
+	
+	public Player()
+	{
+		spriteMap = new ImageIcon("miniman.png").getImage();
+		
+		width = spriteMap.getWidth(pan)/4;
+		height = spriteMap.getHeight(pan)/4;
+		
+		posX2 = posX1 + width;
+		posY2 = posY1 + height;
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.drawImage(spriteMap, posX1, posY1, posX2, posY2, 
+				width * imageNumX, height * imageNumY, width * (imageNumX + 1), height * (imageNumY + 1), pan);
+	}
+}

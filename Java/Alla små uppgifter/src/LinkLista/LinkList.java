@@ -9,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.text.NumberFormat;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
@@ -20,15 +21,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
-public class LinkList extends JFrame implements ActionListener
-{
-	//NumberFormat longFormat = NumberFormat.getIntegerInstance();
+public class LinkList extends JFrame implements ActionListener {
+	// NumberFormat longFormat = NumberFormat.getIntegerInstance();
 
-	//NumberFormatter numberFormatter = new NumberFormatter(longFormat);
+	// NumberFormatter numberFormatter = new NumberFormatter(longFormat);
 
-	//JFormattedTextField field;
-	
-	LinkedList<Integer> nummer = new LinkedList();
+	// JFormattedTextField field;
+
+	LinkedList<Integer> nummer = new LinkedList<>();
 	JPanel pan = new JPanel();
 	JPanel butPan = new JPanel();
 	JTextField inField = new JTextField(8);
@@ -36,21 +36,20 @@ public class LinkList extends JFrame implements ActionListener
 	JButton sort = new JButton("Sortera");
 	JButton shuffle = new JButton("Blanda");
 	JButton backwards = new JButton("Bakfram");
-	
-	public LinkList()
-	{
+
+	public LinkList() {
 		super("hej");
 		setBounds(100, 100, 400, 300);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		fillDefConst();
 		setVisible(true);
 	}
-	
-	public void fillDefConst()
-	{
-		//numberFormatter.setValueClass(Long.class);
-		
+
+	public void fillDefConst() {
+		// numberFormatter.setValueClass(Long.class);
+
 		inField.addKeyListener(new KeyBoard());
+		ta.setEditable(false);
 		pan.add(BorderLayout.SOUTH, inField);
 		pan.add(BorderLayout.WEST, ta);
 		pan.add(BorderLayout.NORTH, butPan);
@@ -63,67 +62,57 @@ public class LinkList extends JFrame implements ActionListener
 		butPan.add(backwards);
 		add(pan);
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
+	public void actionPerformed(ActionEvent e) {
 		Object ob = e.getSource();
-		
-		if(ob instanceof JButton)
-		{
-			String n = ((JButton) ob).getName();
-			if(n == "Sortera")
-			{
-				
+
+		if (ob instanceof JButton) {
+			String n = ((JButton) ob).getText();
+			if (n == "Sortera") {
+				Collections.sort(nummer);
+			} else if (n == "Blanda") {
+				Collections.shuffle(nummer);
+			} else if (n == "Bakfram") {
+				Collections.reverse(nummer);
 			}
 		}
+		ta.setText(nummer.toString());
 	}
-	
-	public static void main(String[] args) 
-	{
+
+	public static void main(String[] args) {
 		new LinkList();
 	}
-	
-	public class KeyBoard extends KeyAdapter
-	{
+
+	public class KeyBoard extends KeyAdapter {
 
 		@Override
-		public void keyTyped(KeyEvent ke) 
-		{
-			if(ke.getKeyChar() == KeyEvent.VK_ENTER)
-			{
+		public void keyTyped(KeyEvent ke) {
+			if (ke.getKeyChar() == KeyEvent.VK_ENTER) {
 				try {
-			        int x = Integer.parseInt(inField.getText());
-			        
-			        if(nummer.isEmpty())
-			        {
-			        	nummer.add(x);
-			        }
-			        else
-			        {
-			        	for(Integer n : nummer)
-				        {
-				        	if(n == x)
-				        	{
-				        		JOptionPane.showMessageDialog(null, "Finns redan det talet");
-				        	}
-				        	else
-				        	{
-				        		nummer.add(x);
-				        	}	
-				        }
-			        }
-			        
-			        ta.setText(nummer.toString());
-			    } 
-				catch (NumberFormatException nfe) 
-				{
-			    	JOptionPane.showMessageDialog(null, "BARA SIFFROR, OMG");
-			    	inField.setText("");
-			    }
+					int x = Integer.parseInt(inField.getText());
+
+					if (nummer.isEmpty()) {
+						nummer.add(x);
+					} else {
+						if (nummer.contains(x)) {
+							JOptionPane.showMessageDialog(null,	"Finns redan det talet");
+						} else {
+							nummer.add(x);
+						}
+
+					}
+
+					ta.setText(nummer.toString());
+				} catch (NumberFormatException nfe) {
+					JOptionPane.showMessageDialog(null, "BARA SIFFROR, OMG");
+					inField.setText("");
+				} catch (Exception e) {
+					System.out.println("????");
+				}
 			}
 		}
-		
+
 	}
 
 }

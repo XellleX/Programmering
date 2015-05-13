@@ -6,30 +6,30 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="doubling" key="selection"/>
+		<item value="waiting" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="ta2"/>
-			<item value="ta"/>
-			<item value="(•.*)"/>
-			<item value="KeyHandler"/>
-			<item value="keyHandler"/>
-			<item value="Rules"/>
-			<item value="sideLab"/>
-			<item value="nextWord"/>
+			<item value="waiting"/>
+			<item value="row"/>
+			<item value="rowSelected"/>
+			<item value="fromServer"/>
+			<item value="animPan"/>
+			<item value="jumpSpeed"/>
+			<item value="GRAVITATION"/>
+			<item value="gamePan.player2"/>
 		</list>
 		<list key="replacehistory">
+			<item value="p1"/>
+			<item value="p2"/>
 			<item value="doubling"/>
 			<item value="pointInfo"/>
 			<item value="$1"/>
 			<item value="&quot;$1&quot;"/>
 			<item value="+ &quot;\\n$1&quot;"/>
 			<item value="+ &quot;\\n1$&quot;"/>
-			<item value="&quot;\\n1$&quot;"/>
-			<item value="&quot;\\n$1&quot;"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

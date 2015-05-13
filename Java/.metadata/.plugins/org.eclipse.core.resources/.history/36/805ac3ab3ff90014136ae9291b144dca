@@ -1,0 +1,19 @@
+package Trafikljus;
+
+import javax.swing.JFrame;
+
+public class Trafikljus extends JFrame
+{
+	public Trafikljus()
+	{
+		setTitle("Trafikljus");
+		setBounds(200, 200, 500, 400);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Trafikljus();
+	}
+}

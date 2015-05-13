@@ -1,0 +1,25 @@
+package Synkronisering;
+
+public class AddTask implements Runnable
+{
+	Syncad s;
+	
+	public AddTask(Syncad s)
+	{
+		this.s = s;
+	}
+
+	@Override
+	public synchronized void run() 
+	{
+		setSum();
+		//b.setSum(1);
+		//System.out.println(b.getSum());
+	}
+	
+	public synchronized void setSum()
+	{
+		s.summa += 1;
+		System.out.println(s.summa);
+	}
+}

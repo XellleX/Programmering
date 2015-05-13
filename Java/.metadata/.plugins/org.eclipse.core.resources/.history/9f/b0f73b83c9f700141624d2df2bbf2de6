@@ -1,0 +1,122 @@
+package ServerKlient;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class KundSupportKlient extends JFrame implements Runnable
+{
+	public static void main(String[] args) 
+	{
+		new KundSupportKlient();
+	}
+	
+	JTextArea chatLog = new JTextArea();
+	JScrollPane chatScroll = new JScrollPane(chatLog);
+	JTextArea textbox = new JTextArea();
+	JScrollPane textboxScroll = new JScrollPane(textbox);
+	
+	private DataInputStream fromServer;
+	private DataOutputStream toServer;
+	
+	private String host = "localhost";
+	
+	String getText;
+	
+	public KundSupportKlient()
+	{
+		setTitle("KundSupport");
+		setBounds(100, 100, 500, 300);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		fillDefConst();
+		setVisible(true);
+	}
+	
+	public void fillDefConst()
+	{
+		chatLog.setEditable(false);
+		chatLog.setPreferredSize(new Dimension(1, 170));
+		textbox.setPreferredSize(new Dimension(1, 50));
+		textbox.addKeyListener(new KeyBoard());
+		add(chatScroll, BorderLayout.NORTH);
+		add(textboxScroll, BorderLayout.SOUTH);
+		connectToServer();
+	}
+	
+	public void connectToServer()
+	{
+		Socket socket;
+		
+		try 
+		{
+			socket = new Socket(host, 8111);
+			
+			fromServer = new DataInputStream(socket.getInputStream());
+			
+			toServer = new DataOutputStream(socket.getOutputStream());
+			
+			new Thread(this).start();
+		} 
+		catch (Exception e) {}
+	}
+	
+	@Override
+	public void run() 
+	{
+		try 
+		{
+			while(true)
+			{
+				System.out.println("aisdj");
+				getText = fromServer.readUTF();
+				appendText();
+			}
+			
+		} 
+		catch (IOException e) {}
+	}
+	
+	public void appendText()
+	{
+		chatLog.append(getText);
+	}
+	
+	
+	class KeyBoard extends KeyAdapter
+	{
+		private Set<Integer> pressed = new HashSet<Integer>();
+
+		
+		@Override
+		public void keyPressed(KeyEvent ke) 
+		{
+			pressed.add(ke.getKeyCode());
+			if(pressed.size() == 2)
+			{
+				if(pressed.contains(KeyEvent.VK_CONTROL) && pressed.contains(KeyEvent.VK_ENTER))
+				{
+					String hold = textbox.getText();
+					textbox.setText("");
+					chatLog.append("\n" + hold);
+				}
+			}
+		}
+		
+		public void keyReleased(KeyEvent ke)
+		{
+			pressed.remove(ke.getKeyCode());
+		}
+	}
+}

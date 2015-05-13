@@ -1,0 +1,45 @@
+package Konto;
+
+import Synkronisering.Syncad;
+
+public class Deposit implements Runnable
+{
+	Integer kontoPengar = 0;
+	Thread deposit = new Thread(this);
+	Thread withdraw = new Thread(new Withdraw(this));
+	
+	public Deposit()
+	{
+		deposit.start();
+	}
+	
+	@Override
+	public void run() 
+	{
+		while(true)
+		{
+			kontoPengar += 1;
+			System.out.println("Ditt konto saldo är: " + kontoPengar + "kr");
+			
+			if(kontoPengar >= 20)
+			{
+				notifyAll();
+			}
+			
+			try 
+			{
+				deposit.sleep(400);
+			} 
+			catch (InterruptedException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Deposit();
+	}
+	
+}

@@ -1,0 +1,81 @@
+package klocka;
+
+import java.awt.BorderLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Klocka extends JFrame
+{
+	
+	JPanel pan = new JPanel();
+	JTextField field = new JTextField(3);
+	
+	public Klocka()
+	{
+		setTitle("Klocka");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setBounds(100, 100, 500, 400);
+		fillDefConst();
+		setVisible(true);
+	}
+	
+	public void fillDefConst()
+	{
+		field.addKeyListener(new KeyBoard());
+		pan.add(BorderLayout.CENTER, field);
+		add(BorderLayout.CENTER, pan);
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Klocka();
+	}
+
+	public class KeyBoard extends KeyAdapter
+	{
+		
+		@Override
+		public void keyTyped(KeyEvent ke) 
+		{
+			char typed = ke.getKeyChar();
+			
+			if(!Character.isDigit(typed))
+			{
+				ke.consume();
+			}
+			
+			else if(Character.isDigit(typed))
+			{
+				int number = (int)typed;
+				if(field.getText().isEmpty() && number >= 51)
+				{
+					ke.consume();
+					field.setText("0" + typed + ":");
+				}
+				
+				if(field.getText().length() == 2)
+				{
+					String holder = field.getText();
+					field.setText(holder + ":");
+				}
+				
+				if(field.getText().length() >= 5)
+				{
+					ke.consume();
+				}
+				
+				System.out.println(field.getText().length());
+				if(field.getText().length() == 1 && field.getText() == "2" && number > 52)
+				{
+					ke.consume();
+				}
+			}
+			
+		}
+		
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;Player.onGround()&apos; to &apos;footing&apos;&#x0D;&#x0A;- Original project: &apos;2 playergame&apos;&#x0D;&#x0A;- Original element: &apos;Player.onGround()&apos;&#x0D;&#x0A;- Renamed element: &apos;Player.footing()&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;onGround&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;{Player.java[Player~onGround" name="footing" references="true" stamp="1427269953183" version="1.0"/>
+</session>
