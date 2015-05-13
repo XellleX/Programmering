@@ -1,0 +1,32 @@
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+
+public class Gubbe extends JPanel
+{
+	private int x, y;
+	
+	public Gubbe()
+	{
+		
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		g.fillOval((x + 100), (y + 100), 30, 30);
+		g.drawLine(100, 130, 0, 0);
+	}
+	
+	public void setX(int _x)
+	{
+		x += _x;
+	}
+	
+	public void setY(int _y)
+	{
+		y += _y;
+	}
+}

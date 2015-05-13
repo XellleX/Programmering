@@ -1,0 +1,29 @@
+package LinkLista;
+
+import java.awt.BorderLayout;
+import java.util.LinkedList;
+
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class LinkList extends JFrame
+{
+	LinkedList<Integer> nummer = new LinkedList();
+	JTextField inField = new JTextField(5);
+	JTextArea ta = new JTextArea(); 
+	
+	public LinkList()
+	{
+		super("hej");
+		setBounds(100, 100, 400, 300);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) 
+	{
+		
+	}
+
+}

@@ -1,0 +1,18 @@
+package Konto;
+
+public class Withdraw implements Runnable
+{
+	Deposit d;
+	
+	public Withdraw(Deposit d)
+	{
+		this.d = d;
+	}
+	
+	@Override
+	public void run() 
+	{
+		
+	}
+
+}

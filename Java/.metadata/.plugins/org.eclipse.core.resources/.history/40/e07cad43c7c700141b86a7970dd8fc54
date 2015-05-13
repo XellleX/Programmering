@@ -1,0 +1,35 @@
+package klocka;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Klocka extends JFrame
+{
+	
+	JPanel pan = new JPanel();
+	JTextField field = new JTextField(7);
+	
+	public Klocka()
+	{
+		setTitle("Klocka");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setBounds(100, 100, 500, 400);
+		fillDefConst();
+		setVisible(true);
+	}
+	
+	public void fillDefConst()
+	{
+		pan.add(field);
+		add(BorderLayout.CENTER, pan);
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Klocka();
+	}
+
+}

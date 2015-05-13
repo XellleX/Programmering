@@ -1,0 +1,32 @@
+package Trafikljus;
+
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Trafikljus extends JFrame
+{
+	JPanel pan = new JPanel();
+	
+	public Trafikljus()
+	{
+		setTitle("Trafikljus");
+		setBounds(200, 200, 700, 400);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		add(pan);
+		
+		setVisible(true);
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Trafikljus();
+	}
+}

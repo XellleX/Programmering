@@ -1,0 +1,11 @@
+package Konto;
+
+public class Deposit 
+{
+	Integer kontoPengar = 0;
+	
+	public Deposit()
+	{
+		
+	}
+}

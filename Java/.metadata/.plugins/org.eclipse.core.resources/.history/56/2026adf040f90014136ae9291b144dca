@@ -1,0 +1,25 @@
+package Trafikljus;
+
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class Panel extends JPanel
+{
+	public Panel()
+	{
+		
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		g.drawLine(350, 350, 350, 200);
+		g.drawLine(350, 200, 310, 200);
+		g.drawLine(350, 200, 390, 200);
+		g.drawLine(310, 200, 310, 10);
+		g.drawLine(390, 200, 390, 10);
+		g.drawLine(390, 10, 310, 10);
+		g.drawOval(320, 200, 60, 60);
+	}
+}

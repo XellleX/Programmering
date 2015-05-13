@@ -1,0 +1,146 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.*;
+
+
+public class UI extends JFrame implements ActionListener
+{
+	Font titleFont = new Font(Font.SANS_SERIF, Font.BOLD, 32);
+	JPanel gamePan = new JPanel(new BorderLayout());
+	JPanel helpPan = new JPanel();
+	JPanel topPan = new JPanel(new GridBagLayout());
+	JPanel centerPan = new JPanel(new GridLayout(5, 6));
+	GridBagConstraints c = new GridBagConstraints();
+	JButton help = new JButton("Help");
+	JLabel title = new JLabel("Mahjong beräknare", JLabel.CENTER);
+	JLabel picture = new JLabel(new ImageIcon("Mahjong mur.jpg"));
+	ArrayList<Player> players = new ArrayList<>();
+	
+	public UI()
+	{
+		jOptionPaneSettings();
+		setTitle("Mahjong beräknare");
+		setExtendedState(MAXIMIZED_BOTH);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		addLabels();
+		fillDefConstructor();
+		setVisible(true);
+	}
+	
+	public void jOptionPaneSettings()
+	{
+		JPanel startWindow = new JPanel();
+		JTextField playerName1 = new JTextField(5);
+		JTextField playerName2 = new JTextField(5);
+		JTextField playerName3 = new JTextField(5);
+		JTextField playerName4 = new JTextField(5);
+		startWindow.add(playerName1);
+		startWindow.add(Box.createHorizontalStrut(15));
+		startWindow.add(playerName2);
+		startWindow.add(Box.createHorizontalStrut(15));
+		startWindow.add(playerName3);
+		startWindow.add(Box.createHorizontalStrut(15));
+		startWindow.add(playerName4);
+		int okCancel = JOptionPane.showConfirmDialog(null, startWindow, "hi", JOptionPane.OK_CANCEL_OPTION);
+		
+		if(okCancel == 0)
+		{
+			if(playerName1.getText() != "")
+			{
+				Player player1 = new Player(playerName1.getText(), "östan");
+				players.add(player1);
+			}
+			
+			if(playerName2.getText() != "")
+			{
+				Player player2 = new Player(playerName2.getText(), "sunnan");
+				players.add(player2);
+			}
+			
+			if(playerName3.getText() != "")
+			{
+				Player player3 = new Player(playerName3.getText(), "östan");
+				players.add(player3);
+			}
+			
+			if(playerName4.getText() != "")
+			{
+				Player player4 = new Player(playerName4.getText(), "östan");
+				players.add(player4);
+			}
+		}
+	}
+	
+	public void fillDefConstructor()
+	{
+		picture.setPreferredSize(new Dimension(250, 175));
+		gamePan.add(BorderLayout.NORTH, topPan);
+		title.setFont(titleFont);
+		topPan.add(title, c);
+		c.gridx = 0;
+		c.gridy = 1;
+		topPan.add(picture, c);
+		helpPan.add(help);
+		add(gamePan);
+	}
+	
+	public void addLabels()
+	{
+		for(int rad = 0; rad < 5; rad++)
+		{
+			for(int col = 0; col < players.size(); col++)
+			{
+				if(rad == 0)
+				{
+					if(col > 0)
+					{
+						JLabel holder = new JLabel(players.get(col).name);
+						holder.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+						centerPan.add(holder);
+					}
+					
+					else
+					{
+						JLabel h = new JLabel("Namn:");
+						centerPan.add(h);
+					}
+				}
+				
+				else if(rad == 1)
+				{
+					if(col > 0)
+					{
+						JTextField textField = new JTextField();
+						textField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+					}
+				}
+			}
+		}
+		/*
+		for(int i = 0; i < 30; i++)
+		{
+			JLabel h = new JLabel();
+			h.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			centerPan.add(h);
+		}
+		*/
+		
+		gamePan.add(centerPan);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent ae) 
+	{
+		
+	}
+	
+}

@@ -1,0 +1,98 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class AnimPanel extends JPanel
+{
+	Player p1;
+	boolean isRunning;
+	int time = 0;
+	
+	public AnimPanel(Player p)
+	{
+		p1 = p;
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		//g.drawImage(spriteMap, posX1, posY1, posX2, posY2, 
+			//	width * imageNumX, height * imageNumY, width * (imageNumX + 1), height * (imageNumY + 1), this);
+		p1.draw(g);
+	}
+	
+	public void gameLoop()
+	{
+		while(isRunning)
+		{
+			try 
+			{
+				Thread.sleep(10);
+			} 
+			catch (InterruptedException e) {}
+			repaint();
+			System.out.println("h");
+		}
+	}
+	
+	class KeyBoard extends KeyAdapter
+	{
+
+		@Override
+		public void keyPressed(KeyEvent ke) 
+		{
+			int key = ke.getExtendedKeyCode();
+			switch(key)
+			{
+				case KeyEvent.VK_A:	
+					time++;
+					p1.posX1 -= 3;
+					p1.posX2 -= 3;
+					p1.imageNumY = 1;
+					if(time % 4 == 0)
+					{
+						p1.imageNumX++;
+					}
+					
+					if(p1.imageNumX >= 4)
+					{
+						p1.imageNumX = 0;
+					}
+					break;
+				case KeyEvent.VK_D:
+					time++;
+					p1.posX1 += 3;
+					p1.posX2 += 3;
+					p1.imageNumY = 2;
+					if(time % 4 == 0)
+					{
+						p1.imageNumX++;
+					}
+					
+					if(p1.imageNumX >= 4)
+					{
+						p1.imageNumX = 0;
+					}
+					break;
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent ke) 
+		{
+			
+		}
+		
+	}
+
+}

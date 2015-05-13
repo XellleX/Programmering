@@ -1,0 +1,70 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+public class Player 
+{
+	Image spriteMap;
+	
+	int width;
+	int height;
+	int posX2;
+	int posY2;
+	int posX1 = 400;
+	int posY1 = 415;
+	int imageNumX = 0;
+	int imageNumY = 0;
+	double vx = 0;
+	double vy = 0;
+	int time = 0;
+	
+	AnimPanel pan;
+	
+	public Player()
+	{
+		spriteMap = new ImageIcon("miniman.png").getImage();
+		
+		width = spriteMap.getWidth(pan)/4;
+		height = spriteMap.getHeight(pan)/4;
+		
+		posX2 = posX1 + width;
+		posY2 = posY1 + height;
+	}
+	
+	public void accelerate(double x, double y)
+	{
+		vx += x;
+		vy += y;
+	}
+	
+	public void step(int imNumY)
+	{
+		time++;
+		posX1 += vx;
+		posX2 += vx;
+		posY1 += vy;
+		posY2 += vy;
+		
+		System.out.println("h");
+		
+		imageNumY = imNumY;
+		if(time % 4 == 0)
+		{
+			imageNumX++;
+		}
+		if(imageNumX >= 4)
+		{
+			imageNumX = 0;
+		}
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.drawImage(spriteMap, posX1, posY1, posX2, posY2, 
+				width * imageNumX, height * imageNumY, width * (imageNumX + 1), height * (imageNumY + 1), pan);
+	}
+}

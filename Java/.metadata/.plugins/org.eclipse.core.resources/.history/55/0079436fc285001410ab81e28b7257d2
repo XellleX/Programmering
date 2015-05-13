@@ -1,0 +1,30 @@
+import javax.swing.Box;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+public class Main 
+{
+	private static JPanel startWindow = new JPanel();
+	private JTextField player1 = new JTextField(5);
+	private JTextField player2 = new JTextField(5);
+	private JTextField player3 = new JTextField(5);
+	private JTextField player4 = new JTextField(5);
+	
+	public Main()
+	{
+		startWindow.add(player1);
+		startWindow.add(Box.createHorizontalStrut(15));
+		startWindow.add(player2);
+		startWindow.add(player3);
+		startWindow.add(player4);
+	}
+	
+	public static void main(String[] args) 
+	{	
+		JOptionPane.showConfirmDialog(null, startWindow, "hi", JOptionPane.OK_CANCEL_OPTION);
+		new UI();
+	}
+
+}

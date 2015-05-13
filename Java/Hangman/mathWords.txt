@@ -1,0 +1,82 @@
+Addition
+Multiplikation
+Division
+Subtraktion
+Kvot
+Differens
+Summa
+Faktor
+Derivata
+Heltal
+Komplexa tal
+Imaginära tal
+Ekvation
+Täljare
+Nämnare
+Integral
+Graf
+Uttryck
+Rot
+Punkt
+Koordinatsystem
+Vinkel
+Radian
+Funktion
+Grader
+Primitiv funktion
+Komposit funktion
+Sigma
+Intervall
+Algebra
+Area
+Volym
+Areasatsen
+Cossinus
+Sinus
+Tangens
+Trigonometri
+Absolutbelopp
+Algoritm
+Bråk tal
+Diagram
+Sannolikhet
+Bråkdel
+Bågvinkel
+Enhetscirkel
+Decimaltal
+Koefficient
+Kurva
+Blandad form
+Polynom
+Ekvationssystem
+Hypotenusa
+Pythagoras sats
+Procent
+Promille
+Positiv
+Negativ
+Reella tal
+Logaritmer
+Värdemängd
+Vinkelrät
+Variabel
+Tangent
+Standardavvikelse
+Rationella tal
+Primtal
+Potens
+Pi
+Närmevärde
+Månghörning
+Kvadrat
+Triangel
+Pyramid
+Cylinder
+Konstant
+Katet
+Geometri
+Förenkla
+Förkorta
+Ellips
+Minnessiffra
+Rest

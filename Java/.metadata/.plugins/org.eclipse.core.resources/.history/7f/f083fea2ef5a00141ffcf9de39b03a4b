@@ -1,0 +1,40 @@
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+
+public class Gubbe extends JPanel
+{
+	private int x, y;
+	private boolean rePaint = true;
+	
+	public Gubbe()
+	{
+		
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		if(rePaint)
+		{
+			//g.clearRect(100, 100, 100, 100);
+			g.fillOval(x, y, 30, 20);
+			rePaint = false;
+		}
+		
+	}
+	
+	public void setX(int _x)
+	{
+		x += _x;
+		rePaint = true;
+	}
+	
+	public void setY(int _y)
+	{
+		y += _y;
+		rePaint = true;
+	}
+}

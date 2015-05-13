@@ -1,0 +1,30 @@
+package Konto;
+
+import Synkronisering.Syncad;
+
+public class Deposit implements Runnable
+{
+	Integer kontoPengar = 0;
+	Thread deposit = new Thread(this);
+	Thread withdraw = new Thread(new Withdraw());
+	
+	public Deposit()
+	{
+		deposit.start();
+	}
+	
+	@Override
+	public void run() 
+	{
+		while(true)
+		{
+			kontoPengar += 1;
+		}
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Deposit();
+	}
+	
+}

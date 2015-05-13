@@ -1,0 +1,111 @@
+package ServerKlient;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Date;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class KundSupportServer extends JFrame
+{
+	
+	public static void main(String[] args) 
+	{
+		new KundSupportServer();
+	}
+	
+	JTextArea serverLog = new JTextArea();
+	JScrollPane scrollPane = new JScrollPane(serverLog);
+	int kundNr = 0;
+	
+	public KundSupportServer()
+	{
+		setTitle("Server log");
+		setBounds(50, 50, 500, 300);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		serverLog.setEditable(false);
+		add(scrollPane, BorderLayout.CENTER);
+		setVisible(true);
+		
+		
+		try
+		{
+			ServerSocket serverSocket = new ServerSocket(8111);
+			serverLog.append(new Date() + ": Server startade på socket 8111\n");
+			
+			while(true)
+			{
+				Socket kund = serverSocket.accept();
+				kundNr++;
+				serverLog.append(new Date() + ": Kund " + kundNr + " startade en session.\n");
+				
+				newWindow();
+				
+			}
+		}
+		catch(IOException ex){}
+	}
+	
+	public void newWindow()
+	{
+		JTextArea chatLog = new JTextArea();
+		JScrollPane chatScroll = new JScrollPane(chatLog);
+		JTextArea textbox = new JTextArea();
+		JScrollPane textboxScroll = new JScrollPane(textbox);
+		
+		JFrame frame = new JFrame("Kund " + kundNr);
+		frame.setBounds(50, 200, 500, 300);
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		chatLog.setEditable(false);
+		chatLog.setPreferredSize(new Dimension(1, 170));
+		textbox.setPreferredSize(new Dimension(1, 50));
+		textbox.addKeyListener(new KeyBoard(chatLog, textbox));
+		frame.add(chatScroll, BorderLayout.NORTH);
+		frame.add(textboxScroll, BorderLayout.SOUTH);
+
+		frame.setVisible(true);
+	}
+	
+	class SessionHandler implements Runnable
+	{
+		Socket kund;
+		
+		private DataInputStream fromKund;
+		private DataOutputStream toKund;
+		private DataInputStream fromKundSupporter;
+		private DataOutputStream toKundSupporter;
+		
+		public SessionHandler(Socket kund, Socket kundSupporter)
+		{
+			this.kund = kund;
+		}
+
+		@Override
+		public void run() 
+		{
+			try
+			{
+				DataInputStream fromKund = new DataInputStream(kund.getInputStream());
+				DataOutputStream toKund = new DataOutputStream(kund.getOutputStream());
+				DataInputStream fromKundSupporter = new DataInputStream(kundSupporter.getInputStream());
+				DataOutputStream toKundSupporter = new DataOutputStream(kundSupporter.getOutputStream());
+				
+				while(true)
+				{
+					
+				}
+			}
+			catch(IOException e){}
+			
+		}
+		
+	}
+
+}

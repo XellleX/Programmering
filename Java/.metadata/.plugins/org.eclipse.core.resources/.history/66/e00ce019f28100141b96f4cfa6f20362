@@ -1,0 +1,73 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.*;
+
+
+public class UI extends JFrame implements ActionListener
+{
+	Font titleFont = new Font(Font.SANS_SERIF, Font.BOLD, 32);
+	JPanel gamePan = new JPanel(new BorderLayout());
+	JPanel helpPan = new JPanel();
+	JPanel topPan = new JPanel(new GridBagLayout());
+	JPanel centerPan = new JPanel(new GridLayout(5, 6));
+	GridBagConstraints c = new GridBagConstraints();
+	JButton help = new JButton("Help");
+	JLabel title = new JLabel("Mahjong beräknare", JLabel.CENTER);
+	JLabel picture = new JLabel(new ImageIcon("Mahjong mur.jpg"));
+	ArrayList<Player> players = new ArrayList<>();
+	
+	public UI()
+	{
+		setTitle("Mahjong beräknare");
+		setExtendedState(MAXIMIZED_BOTH);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		addLabels();
+		fillDefConstructor();
+		setVisible(true);
+	}
+	
+	public void fillDefConstructor()
+	{
+		picture.setPreferredSize(new Dimension(250, 175));
+		gamePan.add(BorderLayout.NORTH, topPan);
+		title.setFont(titleFont);
+		//title.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		//picture.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		topPan.add(title, c);
+		c.gridx = 0;
+		c.gridy = 1;
+		topPan.add(picture, c);
+		helpPan.add(help);
+		add(helpPan);
+		add(gamePan);
+		
+	}
+	
+	public void addLabels()
+	{
+		for(int i = 0; i < 30; i++)
+		{
+			JLabel h = new JLabel();
+			h.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			centerPan.add(h);
+		}
+		
+		gamePan.add(centerPan);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent ae) 
+	{
+		
+	}
+	
+}

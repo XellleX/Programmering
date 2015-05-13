@@ -1,0 +1,41 @@
+package LinkLista;
+
+import java.awt.BorderLayout;
+import java.util.LinkedList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class LinkList extends JFrame
+{
+	LinkedList<Integer> nummer = new LinkedList();
+	JPanel pan = new JPanel();
+	JTextField inField = new JTextField(5);
+	JTextArea ta = new JTextArea();
+	JButton sort = new JButton("Sortera");
+	JButton shuffle = new JButton("Blanda");
+	JButton backwards = new JButton("Bakfram");
+	
+	public LinkList()
+	{
+		super("hej");
+		setBounds(100, 100, 400, 300);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	
+	public void fillDefConst()
+	{
+		pan.add(BorderLayout.SOUTH, inField);
+		pan.add(BorderLayout.WEST, ta);
+	}
+	
+	public static void main(String[] args) 
+	{
+		new LinkList();
+	}
+
+}

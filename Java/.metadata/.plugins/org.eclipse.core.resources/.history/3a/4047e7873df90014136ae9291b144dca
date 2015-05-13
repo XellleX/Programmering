@@ -1,0 +1,34 @@
+package Konto;
+
+public class Withdraw implements Runnable
+{
+	Deposit d;
+	
+	public Withdraw(Deposit d)
+	{
+		this.d = d;
+	}
+	
+	@Override
+	public void run() 
+	{
+		while(true)
+		{
+			if(d.kontoPengar >= 10)
+			{
+				notify();
+			}
+			
+			try 
+			{
+				d.withdraw.wait();
+				d.kontoPengar -= 20;
+			} 
+			catch (InterruptedException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

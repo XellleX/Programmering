@@ -1,0 +1,517 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.swing.*;
+
+
+public class UI extends JFrame implements ActionListener
+{
+	Font titleFont = new Font(Font.SANS_SERIF, Font.BOLD, 32);
+	Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 24);
+	
+	JPanel gamePan = new JPanel(new BorderLayout());
+	JPanel helpPan = new JPanel();
+	JPanel topPan = new JPanel(new GridBagLayout());
+	JPanel centerPan = new JPanel(new GridLayout(5, 6));
+	
+	GridBagConstraints gbc = new GridBagConstraints();
+	
+	JButton helpBut = new JButton("Help");
+	JButton calculateBut = new JButton("calculate");
+	
+	JLabel title = new JLabel("Mahjong beräknare", JLabel.CENTER);
+	JLabel picture = new JLabel(new ImageIcon("Mahjong mur.jpg"));
+	
+	ArrayList<Player> players = new ArrayList<>();
+	ArrayList<JTextField> writtenScore = new ArrayList<>();
+	ArrayList<JCheckBox> mahjongBoxes = new ArrayList<>();
+	ArrayList<JLabel> nameAndWind = new ArrayList<>();
+	ArrayList<JLabel> totAndRoundScoreText = new ArrayList<>();
+	
+	HashMap<String, Boolean> isRondensVind = new HashMap<>();
+	
+	int round = 1;
+	
+	public UI()
+	{
+		jOptionPaneSettings();
+		setTitle("Mahjong beräknare");
+		setExtendedState(MAXIMIZED_BOTH);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		fillDefConstructor();
+		addComponents();
+		setVisible(true);
+	}
+	
+	public void jOptionPaneSettings()
+	{
+		int mp = 4; //Max players
+		GridLayout layout = new GridLayout(2, 5);
+		layout.setHgap(10);
+		JPanel startWindow = new JPanel(layout);
+		JTextField[] playerName = new JTextField[4];
+		ArrayList<JLabel> winds = new ArrayList<JLabel>();
+		String[] ws = {"Östan", "Sunnan", "Västan", "Nordan"};
+		JLabel vindLabel = new JLabel("Vind:");
+		
+		for (int i = 0; i < mp; i++)
+		{
+			JLabel v = new JLabel();
+			v.setText(ws[i]);
+			winds.add(v);
+		}
+		
+		startWindow.add(new JLabel("Skriv namn:"));
+		for(int i = 0; i < 4; i++)
+		{
+			playerName[i] = new JTextField(5);
+			startWindow.add(playerName[i]);
+		}
+		
+		startWindow.add(vindLabel);
+		
+		for (JLabel l : winds)
+		{	
+			startWindow.add(l);
+		}
+		
+		
+		boolean ok = false;
+		boolean firstTry = true;
+		
+		while (!ok)
+		{
+			
+			if(firstTry)
+			{		
+				firstTry = false;
+			}
+			else
+			{
+				vindLabel.setText("Du glömde Östan!");
+			}
+			
+			int okCancel = JOptionPane.showConfirmDialog(null, startWindow, "hi", JOptionPane.OK_CANCEL_OPTION);
+			
+			players.clear();
+			
+			if(okCancel == 0)
+			{
+				for (int i = 0; i < mp; i++)
+				{
+					if (!playerName[i].getText().isEmpty())
+					{
+						Player p = new Player(playerName[i].getText(), winds.get(i).getText());
+						players.add(p);
+					}
+				}
+			}
+			
+			for (Player p : players)
+			{
+				if (p.wind == "Östan")
+				{
+					ok = true;
+					break;
+				}
+			}
+			
+			if(okCancel == -1 || okCancel == 2)
+			{
+				System.exit(0);
+			}
+		}
+		
+		
+	}
+	
+	public void fillDefConstructor()
+	{
+		picture.setPreferredSize(new Dimension(250, 175));
+		//topPan.setBackground(Color.RED);
+		gamePan.add(BorderLayout.NORTH, topPan);
+		title.setFont(titleFont);
+		calculateBut.addActionListener(this);
+		helpPan.add(helpBut);
+		add(gamePan);
+
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weightx = 0.5;
+		topPan.add(title, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.weightx = 0.5;
+		topPan.add(picture, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.weightx = 0.0;
+		gbc.insets = new Insets(100, 0, 0, 10);
+		topPan.add(calculateBut, gbc);
+		
+		for(Player player : players)
+		{
+			if(player.wind == "Östan")
+				isRondensVind.put(player.wind, true);
+			
+			else
+				isRondensVind.put(player.wind, false);
+		}
+	}
+	
+	private void updateComponents()
+	{
+		for(int i = 0; i < players.size(); i++)
+		{
+			if(isRondensVind.get(players.get(i).wind))
+			{
+				nameAndWind.get(i).setText(players.get(i).name + " (" + players.get(i).wind + ") (R)");
+			}
+			else
+			{
+				nameAndWind.get(i).setText(players.get(i).name + " (" + players.get(i).wind + ")");
+			}
+			
+			writtenScore.get(i).setText("");
+			
+			if(players.get(i).mahjong)
+			{
+				mahjongBoxes.get(i).setSelected(false);
+			}
+		}
+	}
+	
+	public void addComponents()
+	{
+		
+		for(int rad = 0; rad < 5; rad++)
+		{
+			for(int col = 0; col < players.size() + 1; col++)
+			{
+				if(rad == 0)
+				{
+					if(col > 0)
+					{
+						
+						if(isRondensVind.get(players.get(col - 1).wind))
+						{
+							JLabel holder = new JLabel(players.get(col - 1).name + " (" + players.get(col - 1).wind + ") (R)", SwingConstants.CENTER);
+							holder.setFont(font);
+							holder.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+							centerPan.add(holder);
+							nameAndWind.add(holder);
+						}
+						else
+						{
+							JLabel holder = new JLabel(players.get(col - 1).name + " (" + players.get(col - 1).wind + ")", SwingConstants.CENTER);
+							holder.setFont(font);
+							holder.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+							centerPan.add(holder);
+							nameAndWind.add(holder);
+						}
+					}
+					
+					else if(col == 0)
+					{
+						JLabel r = new JLabel("Namn:", SwingConstants.CENTER);
+						r.setFont(titleFont);
+						r.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+						centerPan.add(r);
+					}
+				}
+				
+				else if(rad == 1)
+				{
+					if(col > 0)
+					{
+						JTextField textField = new JTextField();
+						textField.setHorizontalAlignment(JTextField.CENTER);
+						textField.setFont(font);
+						textField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+						centerPan.add(textField);
+						writtenScore.add(textField);
+					}
+					
+					else
+					{
+						JLabel r = new JLabel("Egen Poäng:", SwingConstants.CENTER);
+						r.setFont(titleFont);
+						r.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+						centerPan.add(r);
+					}
+				}
+				
+				else if(rad == 2)
+				{
+					if(col > 0)
+					{
+						JCheckBox box = new JCheckBox();
+						box.setBorderPainted(true);
+						box.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+						box.setBackground(Color.WHITE);
+						centerPan.add(box);
+						mahjongBoxes.add(box);
+					}
+					
+					else
+					{
+						JLabel r = new JLabel("Mahjong:", SwingConstants.CENTER);
+						r.setFont(titleFont);
+						r.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+						centerPan.add(r);
+					}
+				}
+				
+				else if(rad == 3 || rad == 4)
+				{
+					if(col > 0)
+					{
+						JLabel lab = new JLabel("", SwingConstants.CENTER);
+						lab.setFont(font);
+						lab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+						centerPan.add(lab);
+						totAndRoundScoreText.add(lab);
+					}
+					
+					else
+					{
+						if(rad == 3)
+						{
+							JLabel r = new JLabel("Rundans Poäng:", SwingConstants.CENTER);
+							r.setFont(titleFont);
+							r.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+							centerPan.add(r);
+						}
+						
+						else
+						{
+							JLabel r = new JLabel("Total Poäng:", SwingConstants.CENTER);
+							r.setFont(titleFont);
+							r.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+							centerPan.add(r);
+						}
+					}
+				}
+			}
+		}
+		
+		centerPan.setBackground(Color.WHITE);
+		gamePan.add(centerPan);
+	}
+	
+	private void initCalculate()
+	{	
+		for(JTextField field : writtenScore) // Kollar så att textfältet inte är tomt
+		{
+			if(field.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(this, "Du fyllde inte i alla egen poäng.", "...", 2);
+				return;
+			}
+		}
+		
+		for(JTextField field : writtenScore)
+		{
+			for(int i = 0; i < field.getText().length(); i++)
+			{
+				if(Character.isLetter(field.getText().charAt(i)))
+				{
+					JOptionPane.showMessageDialog(null, "Du använde bokstäver i textrutan", "...", 2);
+					return;
+				}
+			}
+		}
+		
+		int numOfSelectedBoxes = 0;
+		for(JCheckBox box : mahjongBoxes)
+		{
+			if(box.isSelected())
+			{
+				numOfSelectedBoxes++;
+			}
+		}
+		if(numOfSelectedBoxes == 0 || numOfSelectedBoxes > 1)
+		{
+			JOptionPane.showMessageDialog(this, "Du glömde fylla i mahjong rutan eller fyllde i flera.", "...", 2);
+			return;
+		}
+		
+		for(int i = 0; i < players.size(); i++)
+		{
+			players.get(i).currentscore = Integer.parseInt(writtenScore.get(i).getText());
+			players.get(i).mahjong = mahjongBoxes.get(i).isSelected();
+		}
+		
+		
+		calculateScore();
+		
+		HashMap<Player, String> windMap = new HashMap<>();
+		
+		int i = 0;				
+		for (Player p : players)
+		{
+			int next = i < players.size() - 1 ? i+1 : 0;
+			windMap.put(players.get(next), p.wind);
+			i++;
+		}
+		
+		for (Player p : players)
+		{
+			p.wind = windMap.get(p);
+		}
+		
+		if(round == players.size() * players.size())
+		{
+			round = 0;
+		}
+		
+		if(round % players.size() == 0)
+		{
+			if(round == 0)
+			{
+				isRondensVind.put(players.get(players.size() - 1).wind, false);
+				isRondensVind.put(players.get(round / players.size()).wind, true);
+			}
+			else
+			{
+				isRondensVind.put(players.get(round / players.size() - 1).wind, false);
+				isRondensVind.put(players.get(round / players.size()).wind, true);
+			}
+			
+		}
+		round++;
+		updateComponents();
+	}
+	
+	private void calculateScore()
+	{	
+		for(int i = 0; i < players.size(); i++)
+		{
+			players.get(i).roundScore = 0;
+		}
+		for(int i = 0; i < players.size(); i++)
+		{	
+			if(players.get(i).mahjong)
+			{
+				if(isRondensVind.get(players.get(i).wind))
+				{
+					players.get(i).roundScore += Integer.parseInt(writtenScore.get(i).getText()) * ((players.size() - 1) * 2);
+					players.get(i).totalScore += Integer.parseInt(writtenScore.get(i).getText()) * ((players.size() - 1) * 2);
+					
+					for(Player p : players)
+					{
+						if(p == players.get(i)){}
+						
+						else
+						{
+							p.roundScore -= Integer.parseInt(writtenScore.get(i).getText()) * 2;
+							p.totalScore -= Integer.parseInt(writtenScore.get(i).getText()) * 2;
+						}
+					}
+				}
+				
+				else
+				{
+					players.get(i).roundScore += Integer.parseInt(writtenScore.get(i).getText()) * players.size();
+					players.get(i).totalScore += Integer.parseInt(writtenScore.get(i).getText()) * players.size();
+					
+					for(Player p : players)
+					{
+						if(p == players.get(i)){}
+						
+						else
+						{
+							if(isRondensVind.get(p.wind))
+							{
+								p.roundScore -= Integer.parseInt(writtenScore.get(i).getText()) * 2;
+								p.totalScore -= Integer.parseInt(writtenScore.get(i).getText()) * 2;
+							}
+							
+							else
+							{
+								p.roundScore -= Integer.parseInt(writtenScore.get(i).getText());
+								p.totalScore -= Integer.parseInt(writtenScore.get(i).getText());
+							}
+						}
+					}
+				}
+			}
+			
+			else
+			{
+				for(Player p : players)
+				{
+					if(p == players.get(i)){}
+					else if(p.mahjong){}
+					
+					else
+					{
+						if(players.get(i).currentscore > p.currentscore)
+						{
+							int scoreDif = players.get(i).currentscore - p.currentscore;
+							
+							if(isRondensVind.get(players.get(i).wind) || isRondensVind.get(p.wind))
+							{
+								players.get(i).roundScore += scoreDif * 2;
+								p.roundScore -= scoreDif * 2;
+								players.get(i).totalScore += scoreDif * 2;
+								p.totalScore -= scoreDif * 2;
+							}
+							
+							else
+							{
+								players.get(i).roundScore += scoreDif;
+								p.roundScore -= scoreDif;
+								players.get(i).totalScore += scoreDif;
+								p.totalScore -= scoreDif;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		for(int i = 0; i < players.size(); i++)
+		{
+			totAndRoundScoreText.get(i).setText("" + players.get(i).roundScore);
+			totAndRoundScoreText.get(i + players.size()).setText("" + players.get(i).totalScore);
+		}
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent ae) 
+	{
+		Object ob = ae.getSource();
+		
+		if(ob instanceof JButton)
+		{
+			initCalculate();
+		}
+	}
+	
+	public class KeyHandler extends KeyAdapter
+	{
+		public void keyPressed(KeyEvent k)
+		{
+			if(k.getKeyCode() == KeyEvent.VK_ENTER)
+			{
+				System.out.println("h");
+				initCalculate();
+			}
+		}
+	}
+}

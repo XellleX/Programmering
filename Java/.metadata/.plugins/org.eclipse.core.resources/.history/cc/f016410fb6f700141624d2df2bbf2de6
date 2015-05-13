@@ -1,0 +1,37 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class Main extends JFrame
+{
+	AnimPanel animPan = new AnimPanel();
+	
+	public Main()
+	{
+		setTitle("Run");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setBounds(100, 100, 900, 500);
+		fillDefConst();
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Main();
+	}
+	
+	public void fillDefConst()
+	{
+		add(animPan);
+	}
+}
