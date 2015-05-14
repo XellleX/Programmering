@@ -24,8 +24,6 @@ public class AnimPanel extends JPanel
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		//g.drawImage(spriteMap, posX1, posY1, posX2, posY2, 
-			//	width * imageNumX, height * imageNumY, width * (imageNumX + 1), height * (imageNumY + 1), this);
 		p1.draw(g);
 	}
 	

@@ -41,7 +41,7 @@ public class Player
 		vy += y;
 	}
 	
-	public void step(int imNumY)
+	public void step(int imNumY, int numOfKeysDown)
 	{
 		time++;
 		posX1 += vx;
@@ -51,7 +51,7 @@ public class Player
 		
 		imageNumY = imNumY;
 		
-		if(time % 8 == 0)
+		if(time % (8 * numOfKeysDown) == 0)
 		{
 			imageNumX++;
 		}

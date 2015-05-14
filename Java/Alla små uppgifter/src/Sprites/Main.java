@@ -58,32 +58,41 @@ public class Main extends JFrame
 	
 	public void doGameUpdates()
 	{
+		int numOfKeysDown = 0;
+		for(Boolean p : keyDown)
+		{
+			if(p)
+			{
+				numOfKeysDown++;
+			}
+		}
+		
 		if(keyDown[0])
 		{
 			p1.vx = -2;
 			p1.vy = 0;
-			p1.step(1);
+			p1.step(1, numOfKeysDown);
 		}
 		
 		if(keyDown[1])
 		{
 			p1.vx = 2;
 			p1.vy = 0;
-			p1.step(2);
+			p1.step(2, numOfKeysDown);
 		}
 		
 		if(keyDown[2])
 		{
 			p1.vy = -2;
 			p1.vx = 0;
-			p1.step(3);
+			p1.step(3, numOfKeysDown);
 		}
 		
 		if(keyDown[3])
 		{
 			p1.vy = 2;
 			p1.vx = 0;
-			p1.step(0);
+			p1.step(0, numOfKeysDown);
 		}
 	}
 	
@@ -97,7 +106,7 @@ public class Main extends JFrame
 			
 			switch(key)
 			{
-				case KeyEvent.VK_A:	
+				case KeyEvent.VK_A:
 					keyDown[0] = true;
 					break;
 				case KeyEvent.VK_D:
@@ -119,7 +128,7 @@ public class Main extends JFrame
 			
 			switch(key)
 			{
-				case KeyEvent.VK_A:	
+				case KeyEvent.VK_A:
 					keyDown[0] = false;
 					break;
 				case KeyEvent.VK_D:
