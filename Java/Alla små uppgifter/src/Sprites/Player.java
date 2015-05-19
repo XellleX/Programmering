@@ -2,37 +2,44 @@ package Sprites;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Player 
+import Sprites.World.Tile;
+
+public class Player extends JPanel implements Constants
 {
-	Image spriteMap;
+	Image playerSprite;
+	ArrayList<ArrayList<Tile>> tileMap;
 	
-	int width;
-	int height;
+	final int PLAYER_WIDTH;
+	final int PLAYER_HEIGHT;
 	int posX2;
 	int posY2;
-	int posX1 = 400;
-	int posY1 = 415;
+	int posX1 = 0;
+	int posY1 = 0;
 	int imageNumX = 0;
 	int imageNumY = 0;
 	double vx = 0;
 	double vy = 0;
 	int time = 0;
 	
-	AnimPanel pan;
-	
-	public Player()
+	public Player(int x, int y, ArrayList<ArrayList<Tile>> t)
 	{
-		spriteMap = new ImageIcon("miniman.png").getImage();
+		posX1 = x;
+		posY1 = y;
+		tileMap = t;
+		playerSprite = new ImageIcon("miniman.png").getImage();
 		
-		width = spriteMap.getWidth(pan)/4;
-		height = spriteMap.getHeight(pan)/4;
+		PLAYER_WIDTH = playerSprite.getWidth(this)/4;
+		PLAYER_HEIGHT = playerSprite.getHeight(this)/4;
 		
-		posX2 = posX1 + width;
-		posY2 = posY1 + height;
+		posX2 = posX1 + PLAYER_WIDTH;
+		posY2 = posY1 + PLAYER_HEIGHT;
 	}
 	
 	public void accelerate(double x, double y)
@@ -41,7 +48,7 @@ public class Player
 		vy += y;
 	}
 	
-	public void step(int imNumY, int numOfKeysDown)
+	public void step(int imNumY)
 	{
 		time++;
 		posX1 += vx;
@@ -51,7 +58,7 @@ public class Player
 		
 		imageNumY = imNumY;
 		
-		if(time % (8 * numOfKeysDown) == 0)
+		if(time % 8 == 0)
 		{
 			imageNumX++;
 		}
@@ -63,7 +70,103 @@ public class Player
 	
 	public void draw(Graphics g)
 	{
-		g.drawImage(spriteMap, posX1, posY1, posX2, posY2, 
-				width * imageNumX, height * imageNumY, width * (imageNumX + 1), height * (imageNumY + 1), pan);
+		g.drawImage(playerSprite, posX1, posY1, posX2, posY2, 
+				PLAYER_WIDTH * imageNumX, PLAYER_HEIGHT * imageNumY, PLAYER_WIDTH * (imageNumX + 1), PLAYER_HEIGHT * (imageNumY + 1), this);
+	}
+	
+	public boolean[] collisions()
+	{
+		boolean[] coll = new boolean[]{false, false, false, false};
+		for(int i = 0; i < tileMap.size(); i++)
+		{
+			for(int j = 0; j < tileMap.get(i).size(); j++)
+			{
+				if(tileMap.get(i).get(j).tileType == STONE_TILE)
+				{
+					Rectangle p = new Rectangle(posX1, posY1, PLAYER_WIDTH, PLAYER_HEIGHT);
+					
+					int tx = tileMap.get(i).get(j).x;
+					int ty = tileMap.get(i).get(j).y;
+					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
+					
+					if(p.intersects(t))
+					{
+						if(posY2 < ty + 2)
+						{
+							coll[3] = true;
+							continue;
+						}
+						else
+						{
+							coll[3] = false;
+						}
+						if(posY1 > ty + TILE_SIZE - 2)
+						{
+							coll[2] = true;
+							continue;
+						}
+						else
+						{
+							coll[2] = false;
+						}
+						if(posX2 < tx + 2)
+						{
+							coll[1] = true;
+							continue;
+						}
+						else
+						{
+							coll[1] = false;
+						}
+						if(posX1 > tx + TILE_SIZE - 2)
+						{
+							coll[0] = true;
+							continue;
+						}
+						else
+						{
+							coll[0] = false;
+						}
+//						if(posY2 - 2 < t.y && (!(posX1 + 2 >= t.x + TILE_SIZE) || !(posX2 - 2 < t.x)))
+//						{
+//							coll[3] = true;
+//							continue;
+//						}
+//						else
+//						{
+//							coll[3] = false;
+//						}
+//						if(posY1 + 2 > ty + TILE_SIZE && (!(posX1 + 2 >= tx + TILE_SIZE) || !(posX2 - 2 < tx)))
+//						{
+//							coll[2] = true;
+//							continue;
+//						}
+//						else
+//						{
+//							coll[2] = false;
+//						}
+//						if(posX2 - 2 < tx && (!(posY2 - 2 < ty) || !(posY1 + 2 > ty + TILE_SIZE)))
+//						{
+//							coll[1] = true;
+//							continue;
+//						}
+//						else
+//						{
+//							coll[1] = false;
+//						}
+//						if(posX1 + 2 > tx + TILE_SIZE && (!(posY2 - 2 < ty) || !(posY1 + 2 > ty + TILE_SIZE)))
+//						{
+//							coll[0] = true;
+//							continue;
+//						}
+//						else
+//						{
+//							coll[0] = false;
+//						}
+					}
+				}
+			}
+		}
+		return coll;
 	}
 }

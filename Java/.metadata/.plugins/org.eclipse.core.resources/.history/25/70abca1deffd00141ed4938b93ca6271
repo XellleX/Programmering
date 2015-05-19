@@ -1,0 +1,7 @@
+package Sprites;
+
+public interface Constants 
+{
+	final int TILE_SIZE = 32;
+	final int STONE_TILE = 2;
+}

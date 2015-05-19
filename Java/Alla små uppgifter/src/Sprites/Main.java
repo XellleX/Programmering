@@ -1,5 +1,6 @@
 package Sprites;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -14,18 +15,18 @@ import javax.swing.Timer;
 
 public class Main extends JFrame
 {
-	Player p1 = new Player();
-	AnimPanel animPan = new AnimPanel(p1);
+	World w = new World();
+	Player p1 = new Player(300, 50, w.tileMap);
+	Panel pan = new Panel(p1, w);
 	
 	boolean[] keyDown = new boolean[]{false, false, false, false, false, false};
-	
 	boolean isRunning = true;
 	
 	public Main()
 	{
-		setTitle("Run");
+		setTitle("SPRING");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 500);
+		setExtendedState(MAXIMIZED_BOTH);
 		fillDefConst();
 		setVisible(true);
 		gameLoop();
@@ -39,7 +40,7 @@ public class Main extends JFrame
 	public void fillDefConst()
 	{
 		this.addKeyListener(new KeyBoard());
-		add(animPan);
+		add(pan);
 	}
 	
 	public void gameLoop()
@@ -51,48 +52,81 @@ public class Main extends JFrame
 				Thread.sleep(17);
 			} 
 			catch (InterruptedException e) {}
-			animPan.repaint();
+			pan.repaint();
 			doGameUpdates();
 		}
 	}
 	
 	public void doGameUpdates()
 	{
-		int numOfKeysDown = 0;
-		for(Boolean p : keyDown)
-		{
-			if(p)
-			{
-				numOfKeysDown++;
-			}
-		}
-		
+		System.out.println(p1.collisions()[0] + ", " + p1.collisions()[1] + ", " + p1.collisions()[2] + ", " + p1.collisions()[3]);
 		if(keyDown[0])
 		{
-			p1.vx = -2;
-			p1.vy = 0;
-			p1.step(1, numOfKeysDown);
+			if(p1.collisions()[0])
+			{
+				p1.vx = 0;
+				p1.vy = 0;
+			}
+			
+			else
+			{
+				p1.vx = -2;
+				p1.vy = 0;
+			}
+			p1.step(1);
 		}
 		
-		if(keyDown[1])
+		else if(keyDown[1])
 		{
-			p1.vx = 2;
-			p1.vy = 0;
-			p1.step(2, numOfKeysDown);
+			if(p1.collisions()[1])
+			{
+				p1.vx = 0;
+				p1.vy = 0;
+			}
+			
+			else
+			{
+				p1.vx = 2;
+				p1.vy = 0;
+			}
+			p1.step(2);
 		}
 		
-		if(keyDown[2])
+		else if(keyDown[2])
 		{
-			p1.vy = -2;
-			p1.vx = 0;
-			p1.step(3, numOfKeysDown);
+			if(p1.collisions()[2])
+			{
+				p1.vx = 0;
+				p1.vy = 0;
+			}
+			
+			else
+			{
+				p1.vx = 0;
+				p1.vy = -2;
+			}
+			p1.step(3);
 		}
 		
-		if(keyDown[3])
+		else if(keyDown[3])
 		{
-			p1.vy = 2;
-			p1.vx = 0;
-			p1.step(0, numOfKeysDown);
+			if(p1.collisions()[3])
+			{
+				p1.vx = 0;
+				p1.vy = 0;
+			}
+			
+			else
+			{
+				p1.vx = 0;
+				p1.vy = 2;
+			}
+			p1.step(0);
+		}
+		
+		else
+		{
+			p1.imageNumX = 0;
 		}
 	}
 	

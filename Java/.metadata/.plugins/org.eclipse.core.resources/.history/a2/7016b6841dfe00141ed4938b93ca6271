@@ -1,0 +1,127 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+import Sprites.World.Tile;
+
+public class Player extends JPanel implements Constants
+{
+	Image playerSprite;
+	ArrayList<ArrayList<Tile>> tileMap;
+	
+	final int WIDTH;
+	final int HEIGHT;
+	int posX2;
+	int posY2;
+	int posX1 = 0;
+	int posY1 = 0;
+	int imageNumX = 0;
+	int imageNumY = 0;
+	double vx = 0;
+	double vy = 0;
+	int time = 0;
+	
+	public Player(int x, int y, ArrayList<ArrayList<Tile>> t)
+	{
+		posX1 = x;
+		posY1 = y;
+		tileMap = t;
+		playerSprite = new ImageIcon("miniman.png").getImage();
+		
+		WIDTH = playerSprite.getWidth(this)/4;
+		HEIGHT = playerSprite.getHeight(this)/4;
+		
+		posX2 = posX1 + WIDTH;
+		posY2 = posY1 + HEIGHT;
+	}
+	
+	public void accelerate(double x, double y)
+	{
+		vx += x;
+		vy += y;
+	}
+	
+	public void step(int imNumY)
+	{
+		time++;
+		posX1 += vx;
+		posX2 += vx;
+		posY1 += vy;
+		posY2 += vy;
+		
+		imageNumY = imNumY;
+		
+		if(time % 8 == 0)
+		{
+			imageNumX++;
+		}
+		if(imageNumX >= 4)
+		{
+			imageNumX = 0;
+		}
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.drawImage(playerSprite, posX1, posY1, posX2, posY2, 
+				WIDTH * imageNumX, HEIGHT * imageNumY, WIDTH * (imageNumX + 1), HEIGHT * (imageNumY + 1), this);
+	}
+	
+	public int collisions()
+	{
+		int coll = -1;
+		for(int i = 0; i < tileMap.size(); i++)
+		{
+			for(int j = 0; j < tileMap.get(i).size(); j++)
+			{
+				if(tileMap.get(i).get(j).tileType == STONE_TILE)
+				{
+					Rectangle p = new Rectangle(posX1, posY1, WIDTH, HEIGHT);
+					
+					int tx = tileMap.get(i).get(j).x;
+					int ty = tileMap.get(i).get(j).y;
+					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
+					
+					if(p.intersects(t))
+					{
+						if(posY2 - 2 < ty && (!(posX1 + 2 >= tx + TILE_SIZE) || !(posX2 - 2 < tx)))
+						{
+							coll = 3;
+							
+						}
+						if(posY1 + 2 > ty + TILE_SIZE && (!(posX1 + 2 >= tx + TILE_SIZE) || !(posX2 - 2 < tx)))
+						{
+							coll = 2;
+							
+						}
+						if(posX2 - 2 < tx && (!(posY2 - 2 < ty) || !(posY1 + 2 > ty + TILE_SIZE)))
+						{
+							coll = 1;
+							
+						}
+						if(posX1 + 2 > tx + TILE_SIZE && (!(posY2 - 2 < ty) || !(posY1 + 2 > ty + TILE_SIZE)))
+						{
+							coll = 0;
+							
+						}
+						break;
+					}
+				}
+			}
+		}
+		return coll;
+	}
+	
+//	public void paintComponent(Graphics g)
+//	{
+//		super.paintComponent(g);
+//		g.drawImage(playerSprite, posX1, posY1, posX2, posY2, 
+//				width * imageNumX, height * imageNumY, width * (imageNumX + 1), height * (imageNumY + 1), this);
+//	}
+}
