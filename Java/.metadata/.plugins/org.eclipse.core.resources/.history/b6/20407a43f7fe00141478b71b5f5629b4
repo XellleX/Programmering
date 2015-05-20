@@ -1,0 +1,22 @@
+package Sprites;
+
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class DeathBall extends JPanel
+{
+	int x = 500;
+	int y = 500;
+	
+	public DeathBall(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.fillOval(x, y, 15, 15);
+	}
+}

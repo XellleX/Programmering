@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,20 +16,31 @@ import javax.swing.Timer;
 
 public class Panel extends JPanel
 {
-	Player p1;
+	Player[] players;
 	World w;
+	ArrayList<DeathBall> balls;
 	
-	public Panel(Player p, World w)
+	public Panel(Player[] p, World w, ArrayList<DeathBall> d)
 	{
 		this.w = w;
-		p1 = p;
+		players = p;
+		balls = d;
 	}
 	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		w.placeTiles(g);
-		p1.draw(g);
+		
+		for(int i = 0; i < players.length; i++)
+		{
+			players[i].draw(g);
+		}
+		
+		for(int i = 0; i < balls.size(); i++)
+		{
+			balls.get(i).draw(g);
+		}
 	}
 	
 }

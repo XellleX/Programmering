@@ -1,0 +1,40 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class Panel extends JPanel
+{
+	Player[] players;
+	World w;
+	DeathBall b;
+	
+	public Panel(Player[] p, World w, DeathBall d)
+	{
+		this.w = w;
+		players = p;
+		b = d;
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		w.placeTiles(g);
+		b.draw(g);
+		
+		for(int i = 0; i < players.length; i++)
+		{
+			players[i].draw(g);
+		}
+	}
+	
+}

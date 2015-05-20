@@ -1,0 +1,32 @@
+package Sprites;
+
+import java.awt.Rectangle;
+
+public class Collisions 
+{
+	public boolean playerCollisions()
+	{
+		boolean coll = false;
+		
+		for(int i = 0; i < tileMap.size(); i++)
+		{
+			for(int j = 0; j < tileMap.get(i).size(); j++)
+			{
+				if(tileMap.get(i).get(j).tileType == STONE_TILE)
+				{
+					Rectangle p = new Rectangle((int)(posX1 + 2 + vx), (int)(posY2 - 20 + vy), 28, 18);
+						
+					int tx = tileMap.get(i).get(j).x;
+					int ty = tileMap.get(i).get(j).y;
+					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
+					
+					if(p.intersects(t))
+					{
+						coll = true;
+					}
+				}
+			}
+		}
+		return coll;
+	}
+}

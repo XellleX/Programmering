@@ -1,0 +1,46 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import Sprites.World.Tile;
+
+public class DeathBall extends JPanel
+{
+	ArrayList<ArrayList<Tile>> tileMap;
+	int x = 0;
+	int y = 0;
+	
+	public DeathBall(int x, int y, ArrayList<ArrayList<Tile>> t)
+	{
+		this.x = x;
+		this.y = y;
+		tileMap = t;
+	}
+	
+	public void move()
+	{
+		
+	}
+	
+	public void collisions()
+	{
+		for(int i = 0; i < tileMap.size(); i++)
+		{
+			for(int j = 0; j < tileMap.get(i).size(); j++)
+			{
+				
+			}
+		}
+		Rectangle ball = new Rectangle(x, y, 15, 15);
+		Rectangle tile = 
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.fillOval(x, y, 15, 15);
+	}
+}
