@@ -16,8 +16,6 @@ public class Player extends JPanel implements Constants
 	Image playerSprite;
 	ArrayList<ArrayList<Tile>> tileMap;
 	
-	final int PLAYER_WIDTH;
-	final int PLAYER_HEIGHT;
 	int posX2;
 	int posY2;
 	int posX1 = 0;
@@ -34,9 +32,6 @@ public class Player extends JPanel implements Constants
 		posY1 = y;
 		tileMap = t;
 		playerSprite = new ImageIcon("miniman.png").getImage();
-		
-		PLAYER_WIDTH = playerSprite.getWidth(this)/4;
-		PLAYER_HEIGHT = playerSprite.getHeight(this)/4;
 		
 		posX2 = posX1 + PLAYER_WIDTH;
 		posY2 = posY1 + PLAYER_HEIGHT;
@@ -71,22 +66,32 @@ public class Player extends JPanel implements Constants
 	public void draw(Graphics g)
 	{
 		g.drawImage(playerSprite, posX1, posY1, posX2, posY2, 
-				PLAYER_WIDTH * imageNumX, PLAYER_HEIGHT * imageNumY, PLAYER_WIDTH * (imageNumX + 1), PLAYER_HEIGHT * (imageNumY + 1), this);
+				32 * imageNumX, 48 * imageNumY, 32 * (imageNumX + 1), 48 * (imageNumY + 1), this);
 	}
 	
 	public boolean collisions()
 	{
+<<<<<<< HEAD
 		boolean colli = false;
+=======
+		boolean[] coll = new boolean[]{false, false, false, false};
+		
+>>>>>>> 38e5a93cee95c90993e6a24c1b1cd41da934942a
 		for(int i = 0; i < tileMap.size(); i++)
 		{
 			for(int j = 0; j < tileMap.get(i).size(); j++)
 			{
 				if(tileMap.get(i).get(j).tileType == STONE_TILE)
+<<<<<<< HEAD
 				{
 					Rectangle p = new Rectangle((int)(posX1 + vx), (int)(posY1 + vy), PLAYER_WIDTH, PLAYER_HEIGHT);
 					
+=======
+				{	
+>>>>>>> 38e5a93cee95c90993e6a24c1b1cd41da934942a
 					int tx = tileMap.get(i).get(j).x;
 					int ty = tileMap.get(i).get(j).y;
+					Rectangle p = new Rectangle(posX1, posY1, PLAYER_WIDTH, PLAYER_HEIGHT);
 					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
 					
 					if(p.intersects(t))

@@ -16,7 +16,7 @@ import javax.swing.Timer;
 public class Main extends JFrame
 {
 	World w = new World();
-	Player p1 = new Player(300, 50, w.tileMap);
+	Player p1 = new Player(300, 400, w.tileMap);
 	Panel pan = new Panel(p1, w);
 	
 	boolean[] keyDown = new boolean[]{false, false, false, false, false, false};
