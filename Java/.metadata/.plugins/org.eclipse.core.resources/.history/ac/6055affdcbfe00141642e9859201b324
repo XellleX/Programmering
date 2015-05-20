@@ -83,9 +83,10 @@ public class Player extends JPanel implements Constants
 						
 					int tx = tileMap.get(i).get(j).x;
 					int ty = tileMap.get(i).get(j).y;
+					Rectangle p1 = new Rectangle(posX1, posY1, PLAYER_WIDTH, PLAYER_HEIGHT);
 					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
 					
-					if(p.intersects(t))
+					if(p1.intersects(t))
 					{
 						colli = true;
 					}
