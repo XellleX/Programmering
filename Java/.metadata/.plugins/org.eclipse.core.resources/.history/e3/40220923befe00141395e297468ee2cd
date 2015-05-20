@@ -74,9 +74,9 @@ public class Player extends JPanel implements Constants
 				PLAYER_WIDTH * imageNumX, PLAYER_HEIGHT * imageNumY, PLAYER_WIDTH * (imageNumX + 1), PLAYER_HEIGHT * (imageNumY + 1), this);
 	}
 	
-	public boolean collisions()
+	public boolean[] collisions()
 	{
-		boolean colli = false;
+		boolean[] coll = new boolean[]{false, false, false, false};
 		for(int i = 0; i < tileMap.size(); i++)
 		{
 			for(int j = 0; j < tileMap.get(i).size(); j++)
@@ -91,11 +91,82 @@ public class Player extends JPanel implements Constants
 					
 					if(p.intersects(t))
 					{
-						colli = true;
+						if(posY2 < ty + 2)
+						{
+							coll[3] = true;
+							continue;
+						}
+						else
+						{
+							coll[3] = false;
+						}
+						if(posY1 > ty + TILE_SIZE - 2)
+						{
+							coll[2] = true;
+							continue;
+						}
+						else
+						{
+							coll[2] = false;
+						}
+						if(posX2 < tx + 2)
+						{
+							coll[1] = true;
+							continue;
+						}
+						else
+						{
+							coll[1] = false;
+						}
+						if(posX1 > tx + TILE_SIZE - 2)
+						{
+							coll[0] = true;
+							continue;
+						}
+						else
+						{
+							coll[0] = false;
+						}
+//						if(posY2 - 2 < t.y && (!(posX1 + 2 >= t.x + TILE_SIZE) || !(posX2 - 2 < t.x)))
+//						{
+//							coll[3] = true;
+//							continue;
+//						}
+//						else
+//						{
+//							coll[3] = false;
+//						}
+//						if(posY1 + 2 > ty + TILE_SIZE && (!(posX1 + 2 >= tx + TILE_SIZE) || !(posX2 - 2 < tx)))
+//						{
+//							coll[2] = true;
+//							continue;
+//						}
+//						else
+//						{
+//							coll[2] = false;
+//						}
+//						if(posX2 - 2 < tx && (!(posY2 - 2 < ty) || !(posY1 + 2 > ty + TILE_SIZE)))
+//						{
+//							coll[1] = true;
+//							continue;
+//						}
+//						else
+//						{
+//							coll[1] = false;
+//						}
+//						if(posX1 + 2 > tx + TILE_SIZE && (!(posY2 - 2 < ty) || !(posY1 + 2 > ty + TILE_SIZE)))
+//						{
+//							coll[0] = true;
+//							continue;
+//						}
+//						else
+//						{
+//							coll[0] = false;
+//						}
 					}
 				}
 			}
 		}
-		return colli;
+		return coll;
 	}
 }
