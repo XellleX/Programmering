@@ -3,6 +3,7 @@ package Sprites;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -15,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Main extends JFrame
+public class Main extends JFrame implements Constants
 {
 	int numOfPlayers = 4;
 	
@@ -72,22 +73,30 @@ public class Main extends JFrame
 			}
 		}
 		
-			DeathBall ball1 = new DeathBall(820, 550, 0, 5, w.tileMap, players);
+			DeathBall ball1 = new DeathBall(820, 550, 0, 4, w.tileMap, players);
 			balls.add(ball1);
-			DeathBall ball2 = new DeathBall(500, 550, 0, 5, w.tileMap, players);
+			DeathBall ball2 = new DeathBall(500, 550, 0, 4, w.tileMap, players);
 			balls.add(ball2);
-			DeathBall ball3 = new DeathBall(820, 130, 0, 5, w.tileMap, players);
+			DeathBall ball3 = new DeathBall(820, 130, 0, 4, w.tileMap, players);
 			balls.add(ball3);
-			DeathBall ball4 = new DeathBall(500, 130, 0, 5, w.tileMap, players);
+			DeathBall ball4 = new DeathBall(500, 130, 0, 4, w.tileMap, players);
 			balls.add(ball4);
-			DeathBall ball5 = new DeathBall(1010, 550, 0, 4, w.tileMap, players);
+			DeathBall ball5 = new DeathBall(1010, 540, 0, 3, w.tileMap, players);
 			balls.add(ball5);
-			DeathBall ball6 = new DeathBall(310, 450, 0, 4, w.tileMap, players);
+			DeathBall ball6 = new DeathBall(310, 450, 0, 3, w.tileMap, players);
 			balls.add(ball6);
-			DeathBall ball7 = new DeathBall(1010, 230, 0, 4, w.tileMap, players);
+			DeathBall ball7 = new DeathBall(1010, 230, 0, 3, w.tileMap, players);
 			balls.add(ball7);
-			DeathBall ball8 = new DeathBall(310, 180, 0, 4, w.tileMap, players);
+			DeathBall ball8 = new DeathBall(310, 180, 0, 3, w.tileMap, players);
 			balls.add(ball8);
+			DeathBall ball9 = new DeathBall(1150, 570, 1, 0, w.tileMap, players);
+			balls.add(ball9);
+			DeathBall ball10 = new DeathBall(200, 540, 1, 0, w.tileMap, players);
+			balls.add(ball10);
+			DeathBall ball11 = new DeathBall(1150, 155, 1, 0, w.tileMap, players);
+			balls.add(ball11);
+			DeathBall ball12 = new DeathBall(200, 120, 1, 0, w.tileMap, players);
+			balls.add(ball12);
 		
 		pan = new Panel(players, w, balls);
 		
@@ -109,8 +118,24 @@ public class Main extends JFrame
 		}
 	}
 	
+	public void hasWon()
+	{
+		Rectangle winTiles = new Rectangle(w.tileMap.get(10).get(21).x, w.tileMap.get(10).get(21).y, TILE_SIZE * 2, TILE_SIZE * 3);
+		for(int i = 0; i < players.length; i++)
+		{
+			Rectangle p = new Rectangle(players[i].posX1, players[i].posY1, PLAYER_WIDTH, PLAYER_HEIGHT);
+			if(winTiles.contains(p))
+			{
+				System.out.println("Player " + (i + 1) + " WINS!!");
+				isRunning = false;
+				break;
+			}
+		}
+	}
+	
 	public void doGameUpdates()
 	{
+		hasWon();
 		for(int i = 0; i < balls.size(); i++)
 		{
 			balls.get(i).collisions();

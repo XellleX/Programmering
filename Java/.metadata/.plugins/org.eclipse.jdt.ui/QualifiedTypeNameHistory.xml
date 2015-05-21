@@ -54,10 +54,10 @@
 <fullyQualifiedTypeName name="Sprites.Panel"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="Sprites.World"/>
-<fullyQualifiedTypeName name="Sprites.Constants"/>
 <fullyQualifiedTypeName name="Sprites.Player"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="Sprites.DeathBall"/>
+<fullyQualifiedTypeName name="Sprites.Constants"/>
 <fullyQualifiedTypeName name="java.awt.Rectangle"/>
 </qualifiedTypeNameHistroy>

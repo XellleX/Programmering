@@ -63,7 +63,7 @@ public class DeathBall extends JPanel implements Constants
 		for(int i = 0; i < players.length; i++)
 		{
 			Rectangle b = new Rectangle(x, y, BALL_SIZE, BALL_SIZE);
-			Rectangle p = new Rectangle((int)(players[i].posX1 + 2 + vx), (int)(players[i].posY2 - 20 + vy), 28, 18);
+			Rectangle p = new Rectangle((int)(players[i].posX1 + 2), players[i].posY1 + 2, PLAYER_WIDTH - 4, PLAYER_HEIGHT - 4);
 			
 			if(p.intersects(b))
 			{
