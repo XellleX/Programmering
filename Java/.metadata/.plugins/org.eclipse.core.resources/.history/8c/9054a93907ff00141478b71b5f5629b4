@@ -1,0 +1,80 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import Sprites.World.Tile;
+
+public class DeathBall extends JPanel implements Constants
+{
+	ArrayList<ArrayList<Tile>> tileMap;
+	Player[] players;
+	
+	int x = 0;
+	int y = 0;
+	double vx = 0;
+	double vy = 1;
+	
+	public DeathBall(int x, int y, ArrayList<ArrayList<Tile>> t, Player[] p)
+	{
+		this.x = x;
+		this.y = y;
+		tileMap = t;
+		players = p;
+	}
+	
+	public void move()
+	{
+		x += vx;
+		y += vy;
+	}
+	
+	public void collisions()
+	{
+		for(int i = 0; i < tileMap.size(); i++)
+		{
+			for(int j = 0; j < tileMap.get(i).size(); j++)
+			{
+				if(tileMap.get(i).get(j).tileType == STONE_TILE)
+				{
+					Rectangle ball = new Rectangle(x, y, BALL_SIZE, BALL_SIZE);
+					int tx = tileMap.get(i).get(j).x;
+					int ty = tileMap.get(i).get(j).y;
+					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
+					
+					if(ball.intersects(t))
+					{
+						vx = -vx;
+						vy = -vy;
+					}	
+				}
+			}
+		}
+	}
+	
+	
+	public void ballCollision()
+	{
+		for(int i = 0; i < players.length; i++)
+		{
+			Rectangle b = new Rectangle(x, y, BALL_SIZE, BALL_SIZE);
+			Rectangle p = new Rectangle((int)(posX1 + 2 + vx), (int)(posY2 - 20 + vy), 28, 18);
+			
+			if(p.intersects(b))
+			{
+				players[i].posX1 = 20;
+				posY1 = 630;
+				posX2 = posX1 + PLAYER_WIDTH;
+				posY2 = posY1 + PLAYER_HEIGHT;
+			}	
+		}
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.fillOval(x, y, BALL_SIZE, BALL_SIZE);
+	}
+}

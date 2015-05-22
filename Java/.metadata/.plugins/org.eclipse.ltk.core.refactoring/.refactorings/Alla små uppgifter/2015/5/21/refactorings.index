@@ -7,3 +7,5 @@
 1432026166233	Rename field 'height'
 1432040591682	Rename field 'WIDTH'
 1432040602174	Rename field 'HEIGHT'
+1432111702890	Rename local variable 'colli'
+1432124066181	Rename field 'keyDown'

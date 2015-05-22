@@ -1,0 +1,107 @@
+package Sprites;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+import Sprites.World.Tile;
+
+public class Player extends JPanel implements Constants
+{
+	Image playerSprite;
+	ArrayList<ArrayList<Tile>> tileMap;
+	DeathBall ball;
+	
+	int posX2;
+	int posY2;
+	int posX1 = 0;
+	int posY1 = 0;
+	int imageNumX = 0;
+	int imageNumY = 0;
+	double vx = 0;
+	double vy = 0;
+	int moveSpeed = 2;
+	int time = 0;
+	
+	public Player(int x, int y, ArrayList<ArrayList<Tile>> t, DeathBall b)
+	{
+		posX1 = x;
+		posY1 = y;
+		tileMap = t;
+		ball = b;
+		
+		playerSprite = new ImageIcon("miniman.png").getImage();
+		
+		posX2 = posX1 + PLAYER_WIDTH;
+		posY2 = posY1 + PLAYER_HEIGHT;
+	}
+	
+	public void accelerate(double x, double y)
+	{
+		vx += x;
+		vy += y;
+	}
+	
+	public void step(int imNumY)
+	{
+		time++;
+		posX1 += vx;
+		posX2 += vx;
+		posY1 += vy;
+		posY2 += vy;
+		
+		imageNumY = imNumY;
+		
+		if(time % 8 == 0)
+		{
+			imageNumX++;
+		}
+		if(imageNumX >= 4)
+		{
+			imageNumX = 0;
+		}
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.drawImage(playerSprite, posX1, posY1, posX2, posY2, 
+				32 * imageNumX, 48 * imageNumY, 32 * (imageNumX + 1), 48 * (imageNumY + 1), this);
+	}
+	
+	public void ballCollision()
+	{
+		Rectangle b = new Rectangle(ball.x, ball.y, BALL_SIZE, BALL_SIZE);
+		Rectangle p = new Rectangle((int)(posX1 + 2 + vx), (int)(posY2 - 20 + vy), 28, 18);
+	}
+	
+	public boolean collisions()
+	{
+		boolean coll = false;
+		
+		for(int i = 0; i < tileMap.size(); i++)
+		{
+			for(int j = 0; j < tileMap.get(i).size(); j++)
+			{
+				if(tileMap.get(i).get(j).tileType == STONE_TILE)
+				{
+					Rectangle p = new Rectangle((int)(posX1 + 2 + vx), (int)(posY2 - 20 + vy), 28, 18);
+						
+					int tx = tileMap.get(i).get(j).x;
+					int ty = tileMap.get(i).get(j).y;
+					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
+					
+					if(p.intersects(t))
+					{
+						coll = true;
+					}
+				}
+			}
+		}
+		return coll;
+	}
+}

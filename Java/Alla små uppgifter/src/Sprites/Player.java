@@ -18,19 +18,25 @@ public class Player extends JPanel implements Constants
 	
 	int posX2;
 	int posY2;
-	int posX1 = 0;
-	int posY1 = 0;
+	int posX1;
+	int posY1;
+	int startPosX;
+	int startPosY;
 	int imageNumX = 0;
 	int imageNumY = 0;
 	double vx = 0;
 	double vy = 0;
+	int moveSpeed = 2;
 	int time = 0;
 	
 	public Player(int x, int y, ArrayList<ArrayList<Tile>> t)
 	{
 		posX1 = x;
 		posY1 = y;
+		startPosX = x;
+		startPosY = y;
 		tileMap = t;
+		
 		playerSprite = new ImageIcon("miniman.png").getImage();
 		
 		posX2 = posX1 + PLAYER_WIDTH;
@@ -71,27 +77,27 @@ public class Player extends JPanel implements Constants
 	
 	public boolean collisions()
 	{
-		boolean colli = false;
+		boolean coll = false;
+		
 		for(int i = 0; i < tileMap.size(); i++)
 		{
 			for(int j = 0; j < tileMap.get(i).size(); j++)
 			{
+				int tx = tileMap.get(i).get(j).x;
+				int ty = tileMap.get(i).get(j).y;
+				
+				Rectangle p = new Rectangle((int)(posX1 + 2 + vx), (int)(posY2 - 20 + vy), 28, 18);
+				Rectangle tile = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
+				
 				if(tileMap.get(i).get(j).tileType == STONE_TILE)
-
 				{
-					Rectangle p = new Rectangle((int)(posX1 + vx), (int)(posY1 + vy), PLAYER_WIDTH, PLAYER_HEIGHT);
-						
-					int tx = tileMap.get(i).get(j).x;
-					int ty = tileMap.get(i).get(j).y;
-					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
-					
-					if(p.intersects(t))
+					if(p.intersects(tile))
 					{
-						colli = true;
+						coll = true;
 					}
 				}
 			}
 		}
-		return colli;
+		return coll;
 	}
 }

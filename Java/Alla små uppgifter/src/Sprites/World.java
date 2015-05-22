@@ -61,8 +61,8 @@ public class World extends JPanel implements Constants
 				{
 					g.drawImage(tileSprites, tileMap.get(j).get(i).x, tileMap.get(j).get(i).y, 
 							tileMap.get(j).get(i).x + TILE_SIZE, tileMap.get(j).get(i).y + TILE_SIZE, 
-							0, tileMap.get(j).get(i).tileType * TILE_SIZE, TILE_SIZE,
-							(tileMap.get(j).get(i).tileType + 1) * TILE_SIZE, this);
+							0, tileMap.get(j).get(i).tileType * 32, 32,
+							(tileMap.get(j).get(i).tileType + 1) * 32, this);
 				}
 			}
 	}
