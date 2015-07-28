@@ -1,14 +1,9 @@
 package Sprites;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,7 +22,7 @@ public class World extends JPanel implements Constants
 		getTiles();
 	}
 	
-	public void getTiles()
+	public void getTiles() //gets the tileplacement from a textfile
 	{
 		Scanner sc;
 		try {
@@ -53,7 +48,7 @@ public class World extends JPanel implements Constants
 		}
 	}
 	
-	public void placeTiles(Graphics g)
+	public void placeTiles(Graphics g) //puts out the tiles on the panel
 	{
 		for(int j = 0; j < tileMap.size(); j++)
 			{

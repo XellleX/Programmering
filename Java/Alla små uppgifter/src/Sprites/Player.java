@@ -3,7 +3,6 @@ package Sprites;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -57,9 +56,9 @@ public class Player extends JPanel implements Constants
 		posY1 += vy;
 		posY2 += vy;
 		
-		imageNumY = imNumY;
+		imageNumY = imNumY; //takes the sprite image fitting to the direction player is walking in
 		
-		if(time % 8 == 0)
+		if(time % 8 == 0) //takes the next sprite image
 		{
 			imageNumX++;
 		}
@@ -69,27 +68,27 @@ public class Player extends JPanel implements Constants
 		}
 	}
 	
-	public void draw(Graphics g)
+	public void draw(Graphics g) //draws the player
 	{
 		g.drawImage(playerSprite, posX1, posY1, posX2, posY2, 
 				32 * imageNumX, 48 * imageNumY, 32 * (imageNumX + 1), 48 * (imageNumY + 1), this);
 	}
 	
-	public boolean collisions()
+	public boolean collisions() //Checks if player collides with tiles
 	{
 		boolean coll = false;
 		
-		for(int i = 0; i < tileMap.size(); i++)
+		for(int i = 0; i < tileMap.size(); i++) //Goes through all tiles
 		{
 			for(int j = 0; j < tileMap.get(i).size(); j++)
 			{
 				int tx = tileMap.get(i).get(j).x;
 				int ty = tileMap.get(i).get(j).y;
 				
-				Rectangle p = new Rectangle((int)(posX1 + 2 + vx), (int)(posY2 - 20 + vy), 28, 18);
+				Rectangle p = new Rectangle((int)(posX1 + 2 + vx), (int)(posY1 + 2 + vy), 28, 44);
 				Rectangle tile = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
 				
-				if(tileMap.get(i).get(j).tileType == STONE_TILE)
+				if(tileMap.get(i).get(j).tileType == STONE_TILE) //checks so the tile is a stone tile
 				{
 					if(p.intersects(tile))
 					{
