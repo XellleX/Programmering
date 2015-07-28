@@ -34,7 +34,7 @@ public class DeathBall extends JPanel implements Constants
 		y += vy;
 	}
 	
-	public void collisions()
+	public void tileCollision() //Checks if the ball collides with a tile 
 	{
 		for(int i = 0; i < tileMap.size(); i++)
 		{
@@ -47,7 +47,7 @@ public class DeathBall extends JPanel implements Constants
 					int ty = tileMap.get(i).get(j).y;
 					Rectangle t = new Rectangle(tx, ty, TILE_SIZE, TILE_SIZE);
 					
-					if(ball.intersects(t))
+					if(ball.intersects(t)) //Changes direction of the ball
 					{
 						vx = -vx;
 						vy = -vy;
@@ -58,14 +58,14 @@ public class DeathBall extends JPanel implements Constants
 	}
 	
 	
-	public void ballCollision()
+	public void ballCollisionWithPlayer() //Checks if ball collides with a player
 	{
 		for(int i = 0; i < players.length; i++)
 		{
 			Rectangle b = new Rectangle(x, y, BALL_SIZE, BALL_SIZE);
 			Rectangle p = new Rectangle((int)(players[i].posX1 + 2), players[i].posY1 + 2, PLAYER_WIDTH - 4, PLAYER_HEIGHT - 4);
 			
-			if(p.intersects(b))
+			if(p.intersects(b)) //Sends player back to starting position
 			{
 				players[i].posX1 = players[i].startPosX;
 				players[i].posY1 = players[i].startPosY;
@@ -75,7 +75,7 @@ public class DeathBall extends JPanel implements Constants
 		}
 	}
 	
-	public void draw(Graphics g)
+	public void draw(Graphics g) //draws the ball
 	{
 		g.fillOval(x, y, BALL_SIZE, BALL_SIZE);
 	}
